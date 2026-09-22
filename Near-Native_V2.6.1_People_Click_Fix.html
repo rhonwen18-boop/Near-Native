@@ -1,0 +1,1235 @@
+<!-- Near-Native V2.6 — Supabase account/profile baseline; community + location fixes preserved -->
+<!-- Near-Native V2.5: branched from verified V2.4.1.4 Global Languages. -->
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#253B80"><title>NEAR-NATIVE — Version 2.6</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--indigo:#253B80;--coral:#F26B5E;--bg:#F7F8FA;--text:#17202A;--muted:#667085;--white:#fff;--line:#dfe3eb}*{box-sizing:border-box}body{margin:0;background:#e9ecf2;font-family:Inter,system-ui,sans-serif;color:var(--text)}button,input{font-family:inherit}.app{max-width:430px;min-height:100vh;margin:auto;background:var(--bg);position:relative;overflow:hidden}.screen{display:none;min-height:100vh;padding:28px 24px 34px}.screen.active{display:flex;flex-direction:column}.brand{font-weight:800;letter-spacing:.12em;color:var(--indigo);font-size:15px}.logo{width:92px;height:92px;border-radius:28px;background:var(--indigo);display:grid;place-items:center;margin:80px auto 24px;box-shadow:0 14px 30px #253b8030}.globe{font-size:50px;color:#fff}h1{font-size:30px;line-height:1.15;margin:14px 0 10px;letter-spacing:-.03em}h2{font-size:24px;line-height:1.2;margin:22px 0 8px}.center{text-align:center}.sub{color:var(--muted);line-height:1.55;font-size:15px}.spacer{flex:1}.btn{border:0;border-radius:14px;padding:16px 18px;font:600 15px Inter;cursor:pointer;width:100%;margin-top:12px}.primary{background:var(--indigo);color:white}.secondary{background:white;color:var(--indigo);border:1px solid var(--line)}.link{background:none;border:0;color:var(--indigo);font:600 14px Inter;padding:14px;cursor:pointer}.field{background:white;border:1px solid var(--line);border-radius:13px;padding:15px 14px;margin-top:12px;font-size:15px;width:100%}.search{background:white;border:1px solid var(--line);border-radius:13px;padding:14px;width:100%;font:15px Inter}.back{background:none;border:0;font-size:24px;cursor:pointer;color:var(--text);padding:0;text-align:left;width:40px}.progress{height:5px;background:#e1e5ed;border-radius:8px;margin:12px 0 22px}.progress span{display:block;height:100%;background:var(--coral);border-radius:8px}.country,.choice,.person,.community{display:flex;align-items:center;gap:12px;background:white;border:1px solid #e2e6ee;border-radius:13px;padding:14px;margin-top:9px;cursor:pointer}.country.selected,.choice.selected{border:2px solid var(--indigo);padding:13px}.flag{font-size:24px}.country strong,.person strong,.community strong{font-size:15px}.small{font-size:12px;color:var(--muted);margin-top:3px}.pin{font-size:62px;text-align:center;margin:42px 0 12px}.note{background:#eef1fb;border-radius:14px;padding:13px;color:#3f4d73;font-size:13px;line-height:1.45;margin-top:18px}.icon{font-size:28px;width:40px;text-align:center}.choice{justify-content:space-between}.choice-left{display:flex;align-items:center;gap:12px}.check{width:22px;height:22px;border-radius:50%;border:2px solid #c9cfdb;display:grid;place-items:center;color:#fff;font-size:13px}.selected .check{background:var(--indigo);border-color:var(--indigo)}.pill.selected{background:var(--indigo);color:#fff;border-color:var(--indigo);font-weight:600}.avatar{width:50px;height:50px;border-radius:50%;background:#dfe5f6;display:grid;place-items:center;font-weight:800;color:var(--indigo)}.nav{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);margin:20px -24px -34px;padding:10px 12px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.nav button{border:0;background:none;color:#6b7280;font-size:11px;padding:8px 2px;cursor:pointer}.nav button.active{color:var(--indigo);font-weight:700}.nav .navicon{display:block;font-size:20px;margin-bottom:3px}.hero-card{background:#eef1fb;border-radius:16px;padding:18px;margin-top:18px}.section-title{font-size:16px;font-weight:700;margin-top:22px}.row{display:flex;gap:10px;overflow:auto;margin-top:10px}.pill{white-space:nowrap;background:white;border:1px solid var(--line);border-radius:999px;padding:9px 13px;font-size:13px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:15px;margin-top:10px} .muted{color:var(--muted)}
+/* V2.3 connection-focused visual system */
+.app{box-shadow:0 0 50px #17202a18}.screen{background:linear-gradient(180deg,#fbfcff 0%,#f7f8fa 55%,#f3f5f9 100%)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--coral);text-transform:uppercase}.headline{font-size:32px;font-weight:800;letter-spacing:-.045em}.welcome-card{background:linear-gradient(135deg,#253b80 0%,#4b5fa5 100%);color:#fff;border-radius:24px;padding:22px;margin-top:18px;box-shadow:0 18px 35px #253b8030}.welcome-card .sub{color:#e9edff}.person,.community,.card{box-shadow:0 7px 20px #17202a0b;transition:transform .15s ease,box-shadow .15s ease}.person:active,.community:active,.card:active{transform:scale(.985)}.connect-btn{border:0;border-radius:13px;background:#f26b5e;color:#fff;font-weight:800;padding:11px 14px;cursor:pointer}.avatar{position:relative;overflow:hidden;flex:none}.avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}.avatar .avatar-initials{display:grid;place-items:center;width:100%;height:100%}.avatar-lg{width:112px!important;height:112px!important;font-size:34px!important}.avatar-edit{position:absolute;right:-1px;bottom:-1px;width:32px;height:32px;border:3px solid #fff;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font-size:14px;cursor:pointer;z-index:2}.profile-hero{background:linear-gradient(135deg,#eef1fb,#fff);border:1px solid #e0e5f1;border-radius:24px;padding:22px;text-align:center;margin-top:16px}.profile-name{font-size:24px;font-weight:800;margin-top:10px}.profile-location{color:var(--muted);font-size:14px;margin-top:4px}.profile-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.tag{background:#fff;border:1px solid #dfe3eb;border-radius:999px;padding:8px 11px;font-size:12px;font-weight:600}.connection-banner{display:flex;align-items:center;gap:10px;background:#fff5f3;border:1px solid #ffd9d4;color:#8d3c34;border-radius:14px;padding:12px;font-size:13px;margin-top:14px}.photo-modal{position:fixed;inset:0;background:#17202a88;z-index:10000;display:none;align-items:flex-end;justify-content:center}.photo-modal.open{display:flex}.photo-sheet{width:min(430px,100%);background:#fff;border-radius:26px 26px 0 0;padding:22px;box-shadow:0 -15px 45px #0002}.photo-sheet h3{margin:0 0 6px;font-size:21px}.photo-preview{width:190px;height:190px;border-radius:50%;overflow:hidden;background:#eef1fb;margin:16px auto;display:grid;place-items:center}.photo-preview img{width:100%;height:100%;object-fit:cover}.photo-preview span{font-size:48px;font-weight:800;color:var(--indigo)}.photo-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.photo-actions .btn{margin-top:0}.tiny{font-size:11px;color:var(--muted);text-align:center;margin-top:10px}.section-label{font-size:13px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:20px}
+
+.mapbox{height:360px;margin-top:14px;border-radius:18px;overflow:hidden;background:#e8edf8;border:1px solid var(--line);position:relative}.leaflet-container{font-family:inherit}.leaflet-control-attribution{font-size:9px}.leaflet-popup-content-wrapper{border-radius:12px}.leaflet-popup-content{margin:10px 12px}.city-marker{width:18px;height:18px;border-radius:50%;background:var(--indigo);border:3px solid white;box-shadow:0 2px 8px #17202a55}.city-marker.selected{width:22px;height:22px;background:var(--coral)}.city-results{background:white;border:1px solid var(--line);border-radius:14px;padding:13px;margin-top:10px}.city-results strong{font-size:15px}
+.city-results{background:white;border:1px solid var(--line);border-radius:14px;padding:13px;margin-top:10px}.city-results strong{font-size:15px}
+
+/* ===== V2.4 vibrant welcome experience ===== */
+.s1-vibrant{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  min-height:100vh!important;
+  padding:24px 22px 22px!important;
+  background:
+    radial-gradient(circle at 12% 8%, #ffb7a8 0 0, transparent 28%),
+    radial-gradient(circle at 92% 16%, #a9b8ff 0 0, transparent 30%),
+    radial-gradient(circle at 50% 92%, #ffd76e 0 0, transparent 32%),
+    linear-gradient(145deg,#fff7f4 0%,#f4f5ff 48%,#f5fbff 100%)!important;
+}
+.s1-vibrant:before,.s1-vibrant:after{
+  content:"";position:absolute;border-radius:50%;filter:blur(2px);z-index:-1;opacity:.7;
+}
+.s1-vibrant:before{
+  width:190px;height:190px;right:-75px;top:115px;
+  background:linear-gradient(135deg,#8d7cff,#ff8b79);
+}
+.s1-vibrant:after{
+  width:150px;height:150px;left:-70px;bottom:170px;
+  background:linear-gradient(135deg,#50d9c2,#6e9dff);
+}
+.v4-top{
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;position:relative;z-index:2;
+}
+.v4-brand{
+  display:flex;align-items:center;gap:9px;font-size:13px;font-weight:800;
+  letter-spacing:.08em;color:#253b80;
+}
+.v4-mini-logo{
+  width:34px;height:34px;border-radius:11px;display:grid;place-items:center;
+  color:#fff;font-size:19px;
+  background:linear-gradient(135deg,#253b80,#7257e8 55%,#f26b5e);
+  box-shadow:0 8px 18px #253b8030;
+}
+.v4-badge{
+  background:#fff9;border:1px solid #ffffffb8;backdrop-filter:blur(8px);
+  color:#253b80;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:800;
+}
+.v4-hero{
+  margin-top:52px;text-align:left;position:relative;z-index:2;
+}
+.v4-kicker{
+  display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border-radius:999px;
+  background:#ffffffb8;border:1px solid #fff;backdrop-filter:blur(8px);
+  color:#6b3fe8;font-size:12px;font-weight:800;
+}
+.v4-title{
+  font-size:43px!important;line-height:1.02!important;letter-spacing:-.065em!important;
+  margin:15px 0 13px!important;color:#17202a;
+}
+.v4-title span{
+  background:linear-gradient(90deg,#253b80,#7257e8,#f26b5e);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.v4-copy{
+  max-width:350px;color:#4d5870!important;font-size:16px!important;line-height:1.55!important;
+  margin:0!important;
+}
+.v4-people{
+  height:125px;margin:27px 0 4px;position:relative;
+}
+.v4-person{
+  position:absolute;width:66px;height:66px;border-radius:50%;overflow:hidden;
+  display:grid;place-items:center;font-size:23px;font-weight:800;color:#fff;
+  border:4px solid #fff;box-shadow:0 10px 25px #17202a20;
+}
+.v4-person:nth-child(1){left:4%;top:26px;background:linear-gradient(135deg,#ff8d7a,#ffbd69)}
+.v4-person:nth-child(2){left:24%;top:0;background:linear-gradient(135deg,#596bdb,#9d7cff)}
+.v4-person:nth-child(3){left:45%;top:38px;background:linear-gradient(135deg,#22bfa8,#5c8dff)}
+.v4-person:nth-child(4){left:66%;top:4px;background:linear-gradient(135deg,#f26b5e,#d957a5)}
+.v4-person:nth-child(5){left:82%;top:45px;background:linear-gradient(135deg,#f4b942,#ef6f91)}
+.v4-connection{
+  position:absolute;left:17%;right:15%;top:55px;height:2px;
+  background:linear-gradient(90deg,#ff9a86,#7257e8,#4dcdb7,#f26b5e);
+  opacity:.45;
+}
+.v4-connection:after{
+  content:"";position:absolute;left:48%;top:-5px;width:12px;height:12px;border-radius:50%;
+  background:#fff;border:3px solid #7257e8;box-shadow:0 0 0 7px #7257e820;
+}
+.v4-actions{position:relative;z-index:2;margin-top:10px}
+.v4-actions .btn{
+  border-radius:17px;padding:17px 18px;margin-top:10px;font-size:15px;
+}
+.v4-primary{
+  background:linear-gradient(100deg,#253b80,#7257e8 62%,#8c6cff)!important;
+  box-shadow:0 13px 25px #514bd044;
+}
+.v4-secondary{
+  background:#ffffffc9!important;border:1px solid #ffffff!important;color:#253b80!important;
+  backdrop-filter:blur(8px);box-shadow:0 8px 20px #17202a10;
+}
+.v4-foot{
+  margin-top:14px;color:#667085;font-size:11px;text-align:center;line-height:1.45;
+}
+
+
+/* ===== Near-Native V2.5 visual polish ===== */
+:root{--nn-blue:#253B80;--nn-coral:#F26B5E;--nn-teal:#17A398;--nn-yellow:#F4C95D;--nn-soft:#F3F6FF}
+body{background:linear-gradient(180deg,#f8faff 0%,#f7f8fa 42%,#fff 100%)}
+.screen{position:relative;overflow-x:hidden}
+.screen:before{content:"";position:absolute;top:-90px;right:-100px;width:210px;height:210px;border-radius:50%;background:rgba(37,59,128,.07);pointer-events:none}
+.screen:after{content:"";position:absolute;bottom:55px;left:-120px;width:210px;height:210px;border-radius:50%;background:rgba(242,107,94,.055);pointer-events:none}
+.screen>*{position:relative;z-index:1}
+.s1-vibrant{background:radial-gradient(circle at 85% 10%,rgba(242,107,94,.22),transparent 28%),radial-gradient(circle at 10% 70%,rgba(23,163,152,.14),transparent 30%),linear-gradient(145deg,#f9fbff,#fff4f0)}
+.s1-vibrant:before{background:rgba(244,201,93,.18)}
+.nn-v25-hero{padding:18px 0 10px}.nn-v25-kicker{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #e7eaf2;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800;box-shadow:0 6px 20px rgba(37,59,128,.08)}
+.nn-v25-title{font-size:34px;line-height:1.02;margin:16px 0 10px;letter-spacing:-1.2px}.nn-v25-title span{color:var(--nn-coral)}
+.nn-v25-card{background:rgba(255,255,255,.9);border:1px solid rgba(37,59,128,.1);border-radius:22px;padding:17px;box-shadow:0 12px 32px rgba(37,59,128,.08);margin:14px 0}
+.nn-v25-card .small{line-height:1.45}
+.nn-v25-photo{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#fff,#f4f7ff);border:1px solid #e2e7f3;border-radius:18px;padding:12px;margin:14px 0}
+.nn-v25-photo .avatar{margin:0;width:58px;height:58px;flex:0 0 58px}
+.nn-v25-photo-text{flex:1}.nn-v25-photo-text strong{display:block;margin-bottom:3px}
+.nn-v25-profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.nn-v25-stat{background:#fff;border:1px solid #e3e7ef;border-radius:15px;padding:11px}.nn-v25-stat b{display:block;font-size:12px;margin-bottom:3px}.nn-v25-stat span{font-size:12px;color:var(--muted)}
+.discover-person{border-radius:20px!important;border:1px solid #e1e6f0!important;background:rgba(255,255,255,.95)!important;box-shadow:0 8px 24px rgba(37,59,128,.07);padding:14px!important;margin:10px 0!important;transition:transform .15s}
+.discover-person:active{transform:scale(.985)}
+.discover-person .avatar{width:56px;height:56px;flex:0 0 56px}.discover-person .small{margin-top:4px;line-height:1.4}
+.nn-v25-connect{margin-left:auto!important;min-width:82px!important;padding:9px 10px!important;font-size:12px!important}
+.profile-hero{background:linear-gradient(145deg,#fff,#f5f7ff);border:1px solid #e1e6f1;border-radius:24px;padding:20px 14px;box-shadow:0 12px 30px rgba(37,59,128,.08)}
+.profile-actions{margin-top:14px!important}.profile-actions .btn{border-radius:14px}
+.tag-row{display:flex;flex-wrap:wrap;gap:7px}.tag{border-radius:999px!important;background:#f2f5ff!important;border:1px solid #e0e6f5!important}
+.btn{border-radius:14px!important;font-weight:800!important}.field,.search{border-radius:14px!important;border:1px solid #dce2ed!important;background:#fff!important}.field:focus,.search:focus{border-color:var(--nn-blue)!important;box-shadow:0 0 0 4px rgba(37,59,128,.08)!important}
+.progress{height:7px!important;border-radius:99px!important;background:#e7ebf3!important}.progress span{border-radius:99px!important}
+.choice,.pill,.community,.person,.card,.hero-card,.welcome-card{border-radius:18px!important}
+.nav{border-radius:20px 20px 0 0!important;box-shadow:0 -8px 24px rgba(37,59,128,.08)!important}
+@media(max-width:430px){.nn-v25-profile-grid{grid-template-columns:1fr 1fr}.nn-v25-title{font-size:31px}}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style id="near-native-v24-onboarding-polish">
+/* Near-Native V2.4.1.1 — registration/onboarding visual polish */
+:root{
+  --nn-grad:linear-gradient(135deg,#7c3aed 0%,#ec4899 52%,#f97316 100%);
+  --nn-soft:linear-gradient(135deg,rgba(124,58,237,.12),rgba(236,72,153,.10));
+}
+.screen:not(#screen-welcome) .card,
+.screen:not(#screen-welcome) .panel,
+.screen:not(#screen-welcome) .form-card{
+  border-radius:24px !important;
+}
+.screen:not(#screen-welcome) .primary,
+.screen:not(#screen-welcome) button.primary,
+.screen:not(#screen-welcome) .continue,
+.screen:not(#screen-welcome) .btn-primary{
+  background:var(--nn-grad) !important;
+  border:0 !important;
+  box-shadow:0 10px 24px rgba(124,58,237,.20) !important;
+}
+.screen:not(#screen-welcome) input,
+.screen:not(#screen-welcome) select,
+.screen:not(#screen-welcome) textarea{
+  border-radius:16px !important;
+  transition:.2s ease;
+}
+.screen:not(#screen-welcome) input:focus,
+.screen:not(#screen-welcome) select:focus,
+.screen:not(#screen-welcome) textarea:focus{
+  border-color:#8b5cf6 !important;
+  box-shadow:0 0 0 4px rgba(139,92,246,.12) !important;
+}
+.screen:not(#screen-welcome) .option,
+.screen:not(#screen-welcome) .choice,
+.screen:not(#screen-welcome) .country,
+.screen:not(#screen-welcome) .interest,
+.screen:not(#screen-welcome) .chip{
+  border-radius:18px !important;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease;
+}
+.screen:not(#screen-welcome) .option:hover,
+.screen:not(#screen-welcome) .choice:hover,
+.screen:not(#screen-welcome) .country:hover,
+.screen:not(#screen-welcome) .interest:hover,
+.screen:not(#screen-welcome) .chip:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(30,41,59,.08);
+}
+.screen:not(#screen-welcome) .option.selected,
+.screen:not(#screen-welcome) .choice.selected,
+.screen:not(#screen-welcome) .country.selected,
+.screen:not(#screen-welcome) .interest.selected,
+.screen:not(#screen-welcome) .chip.selected,
+.screen:not(#screen-welcome) [aria-selected="true"]{
+  border-color:#8b5cf6 !important;
+  background:var(--nn-soft) !important;
+}
+.screen:not(#screen-welcome) h1,
+.screen:not(#screen-welcome) h2{
+  letter-spacing:-.025em;
+}
+.nn-onboarding-accent{
+  height:7px;border-radius:999px;background:var(--nn-grad);
+  margin:0 0 18px;box-shadow:0 4px 12px rgba(124,58,237,.16);
+}
+</style>
+
+</head><body><div style="position:fixed;top:8px;right:10px;z-index:9999;background:#111;color:#fff;padding:5px 9px;border-radius:12px;font-size:11px;opacity:.8">Near-Native V2.6 · Supabase Connected Baseline</div><main class="app">
+<section id="s1" class="screen active s1-vibrant"><div class="nn-onboarding-accent" aria-hidden="true"></div>
+  <div class="v4-top">
+    <div class="v4-brand"><div class="v4-mini-logo">◎</div>NEAR-NATIVE</div>
+    <div class="v4-badge">🌍 Global connections</div>
+  </div>
+
+  <div class="v4-hero">
+    <div class="v4-kicker">✨ Meet people who feel familiar</div>
+    <h1 class="v4-title">Your people<br><span>are out there.</span></h1>
+    <p class="v4-copy">Connect with people who share your language, culture, interests and sense of home — wherever you are in the world.</p>
+  </div>
+
+  <div class="v4-people" aria-hidden="true">
+    <div class="v4-connection"></div>
+    <div class="v4-person">AM</div>
+    <div class="v4-person">TK</div>
+    <div class="v4-person">JR</div>
+    <div class="v4-person">NS</div>
+    <div class="v4-person">+</div>
+  </div>
+
+  <div class="v4-actions">
+    <button class="btn primary v4-primary" onclick="go(2)">🌎 Get Started</button>
+    <button class="btn secondary v4-secondary" onclick="showLogin()">I already have an account</button>
+  </div>
+
+  <div class="v4-foot">People · Communities · Maps · Messages<br>Find your people. Start a connection.</div>
+</section>
+<section id="s2" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><div class="brand">NEAR-NATIVE</div><h1>Create your account</h1><p class="sub">It only takes a minute to get started.</p><input id="signupName" class="field" placeholder="First name" autocomplete="given-name"><input id="signupEmail" class="field" placeholder="Email address" type="email" autocomplete="email"><input id="signupPassword" class="field" placeholder="Password" type="password" autocomplete="new-password"><div id="authStatus" class="note" style="display:none"></div><div class="spacer"></div><button id="signupBtn" class="btn primary" onclick="createAccount()">Create Account</button></section>
+<section id="s3" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(2)">‹</button><div class="progress"><span style="width:14%"></span></div><h2>Where are you from?</h2><p class="sub">Choose the country you identify with or come from. Search for any country worldwide.</p><input class="search" placeholder="Search any country…" oninput="filterCountries(this.value)"><div id="countries"><div class="country" onclick="selectCountry(this,'Afghanistan')"><span class="flag">🇦🇫</span><div><strong>Afghanistan</strong><div class="small">Afghanistan</div></div></div><div class="country" onclick="selectCountry(this,'Albania')"><span class="flag">🇦🇱</span><div><strong>Albania</strong><div class="small">Albania</div></div></div><div class="country" onclick="selectCountry(this,'Algeria')"><span class="flag">🇩🇿</span><div><strong>Algeria</strong><div class="small">Algeria</div></div></div><div class="country" onclick="selectCountry(this,'American Samoa')"><span class="flag">🇦🇸</span><div><strong>American Samoa</strong><div class="small">American Samoa</div></div></div><div class="country" onclick="selectCountry(this,'Andorra')"><span class="flag">🇦🇩</span><div><strong>Andorra</strong><div class="small">Andorra</div></div></div><div class="country" onclick="selectCountry(this,'Angola')"><span class="flag">🇦🇴</span><div><strong>Angola</strong><div class="small">Angola</div></div></div><div class="country" onclick="selectCountry(this,'Anguilla')"><span class="flag">🇦🇮</span><div><strong>Anguilla</strong><div class="small">Anguilla</div></div></div><div class="country" onclick="selectCountry(this,'Antarctica')"><span class="flag">🇦🇶</span><div><strong>Antarctica</strong><div class="small">Antarctica</div></div></div><div class="country" onclick="selectCountry(this,'Antigua and Barbuda')"><span class="flag">🇦🇬</span><div><strong>Antigua and Barbuda</strong><div class="small">Antigua and Barbuda</div></div></div><div class="country" onclick="selectCountry(this,'Argentina')"><span class="flag">🇦🇷</span><div><strong>Argentina</strong><div class="small">Argentina</div></div></div><div class="country" onclick="selectCountry(this,'Armenia')"><span class="flag">🇦🇲</span><div><strong>Armenia</strong><div class="small">Armenia</div></div></div><div class="country" onclick="selectCountry(this,'Aruba')"><span class="flag">🇦🇼</span><div><strong>Aruba</strong><div class="small">Aruba</div></div></div><div class="country" onclick="selectCountry(this,'Australia')"><span class="flag">🇦🇺</span><div><strong>Australia</strong><div class="small">Australia</div></div></div><div class="country" onclick="selectCountry(this,'Austria')"><span class="flag">🇦🇹</span><div><strong>Austria</strong><div class="small">Austria</div></div></div><div class="country" onclick="selectCountry(this,'Azerbaijan')"><span class="flag">🇦🇿</span><div><strong>Azerbaijan</strong><div class="small">Azerbaijan</div></div></div><div class="country" onclick="selectCountry(this,'Bahamas')"><span class="flag">🇧🇸</span><div><strong>Bahamas</strong><div class="small">Bahamas</div></div></div><div class="country" onclick="selectCountry(this,'Bahrain')"><span class="flag">🇧🇭</span><div><strong>Bahrain</strong><div class="small">Bahrain</div></div></div><div class="country" onclick="selectCountry(this,'Bangladesh')"><span class="flag">🇧🇩</span><div><strong>Bangladesh</strong><div class="small">Bangladesh</div></div></div><div class="country" onclick="selectCountry(this,'Barbados')"><span class="flag">🇧🇧</span><div><strong>Barbados</strong><div class="small">Barbados</div></div></div><div class="country" onclick="selectCountry(this,'Belarus')"><span class="flag">🇧🇾</span><div><strong>Belarus</strong><div class="small">Belarus</div></div></div><div class="country" onclick="selectCountry(this,'Belgium')"><span class="flag">🇧🇪</span><div><strong>Belgium</strong><div class="small">Belgium</div></div></div><div class="country" onclick="selectCountry(this,'Belize')"><span class="flag">🇧🇿</span><div><strong>Belize</strong><div class="small">Belize</div></div></div><div class="country" onclick="selectCountry(this,'Benin')"><span class="flag">🇧🇯</span><div><strong>Benin</strong><div class="small">Benin</div></div></div><div class="country" onclick="selectCountry(this,'Bermuda')"><span class="flag">🇧🇲</span><div><strong>Bermuda</strong><div class="small">Bermuda</div></div></div><div class="country" onclick="selectCountry(this,'Bhutan')"><span class="flag">🇧🇹</span><div><strong>Bhutan</strong><div class="small">Bhutan</div></div></div><div class="country" onclick="selectCountry(this,'Bolivia')"><span class="flag">🇧🇴</span><div><strong>Bolivia</strong><div class="small">Bolivia</div></div></div><div class="country" onclick="selectCountry(this,'Bonaire, Sint Eustatius and Saba')"><span class="flag">🇧🇶</span><div><strong>Bonaire, Sint Eustatius and Saba</strong><div class="small">Bonaire, Sint Eustatius and Saba</div></div></div><div class="country" onclick="selectCountry(this,'Bosnia and Herzegovina')"><span class="flag">🇧🇦</span><div><strong>Bosnia and Herzegovina</strong><div class="small">Bosnia and Herzegovina</div></div></div><div class="country" onclick="selectCountry(this,'Botswana')"><span class="flag">🇧🇼</span><div><strong>Botswana</strong><div class="small">Botswana</div></div></div><div class="country" onclick="selectCountry(this,'Bouvet Island')"><span class="flag">🇧🇻</span><div><strong>Bouvet Island</strong><div class="small">Bouvet Island</div></div></div><div class="country" onclick="selectCountry(this,'Brazil')"><span class="flag">🇧🇷</span><div><strong>Brazil</strong><div class="small">Brazil</div></div></div><div class="country" onclick="selectCountry(this,'British Indian Ocean Territory')"><span class="flag">🇮🇴</span><div><strong>British Indian Ocean Territory</strong><div class="small">British Indian Ocean Territory</div></div></div><div class="country" onclick="selectCountry(this,'Brunei')"><span class="flag">🇧🇳</span><div><strong>Brunei</strong><div class="small">Brunei</div></div></div><div class="country" onclick="selectCountry(this,'Bulgaria')"><span class="flag">🇧🇬</span><div><strong>Bulgaria</strong><div class="small">Bulgaria</div></div></div><div class="country" onclick="selectCountry(this,'Burkina Faso')"><span class="flag">🇧🇫</span><div><strong>Burkina Faso</strong><div class="small">Burkina Faso</div></div></div><div class="country" onclick="selectCountry(this,'Burundi')"><span class="flag">🇧🇮</span><div><strong>Burundi</strong><div class="small">Burundi</div></div></div><div class="country" onclick="selectCountry(this,'Cabo Verde')"><span class="flag">🇨🇻</span><div><strong>Cabo Verde</strong><div class="small">Cabo Verde</div></div></div><div class="country" onclick="selectCountry(this,'Cambodia')"><span class="flag">🇰🇭</span><div><strong>Cambodia</strong><div class="small">Cambodia</div></div></div><div class="country" onclick="selectCountry(this,'Cameroon')"><span class="flag">🇨🇲</span><div><strong>Cameroon</strong><div class="small">Cameroon</div></div></div><div class="country" onclick="selectCountry(this,'Canada')"><span class="flag">🇨🇦</span><div><strong>Canada</strong><div class="small">Canada</div></div></div><div class="country" onclick="selectCountry(this,'Cayman Islands')"><span class="flag">🇰🇾</span><div><strong>Cayman Islands</strong><div class="small">Cayman Islands</div></div></div><div class="country" onclick="selectCountry(this,'Central African Republic')"><span class="flag">🇨🇫</span><div><strong>Central African Republic</strong><div class="small">Central African Republic</div></div></div><div class="country" onclick="selectCountry(this,'Chad')"><span class="flag">🇹🇩</span><div><strong>Chad</strong><div class="small">Chad</div></div></div><div class="country" onclick="selectCountry(this,'Chile')"><span class="flag">🇨🇱</span><div><strong>Chile</strong><div class="small">Chile</div></div></div><div class="country" onclick="selectCountry(this,'China')"><span class="flag">🇨🇳</span><div><strong>China</strong><div class="small">China</div></div></div><div class="country" onclick="selectCountry(this,'Christmas Island')"><span class="flag">🇨🇽</span><div><strong>Christmas Island</strong><div class="small">Christmas Island</div></div></div><div class="country" onclick="selectCountry(this,'Cocos (Keeling) Islands')"><span class="flag">🇨🇨</span><div><strong>Cocos (Keeling) Islands</strong><div class="small">Cocos (Keeling) Islands</div></div></div><div class="country" onclick="selectCountry(this,'Colombia')"><span class="flag">🇨🇴</span><div><strong>Colombia</strong><div class="small">Colombia</div></div></div><div class="country" onclick="selectCountry(this,'Comoros')"><span class="flag">🇰🇲</span><div><strong>Comoros</strong><div class="small">Comoros</div></div></div><div class="country" onclick="selectCountry(this,'Republic of the Congo')"><span class="flag">🇨🇬</span><div><strong>Republic of the Congo</strong><div class="small">Republic of the Congo</div></div></div><div class="country" onclick="selectCountry(this,'Democratic Republic of the Congo')"><span class="flag">🇨🇩</span><div><strong>Democratic Republic of the Congo</strong><div class="small">Democratic Republic of the Congo</div></div></div><div class="country" onclick="selectCountry(this,'Cook Islands')"><span class="flag">🇨🇰</span><div><strong>Cook Islands</strong><div class="small">Cook Islands</div></div></div><div class="country" onclick="selectCountry(this,'Costa Rica')"><span class="flag">🇨🇷</span><div><strong>Costa Rica</strong><div class="small">Costa Rica</div></div></div><div class="country" onclick="selectCountry(this,'Croatia')"><span class="flag">🇭🇷</span><div><strong>Croatia</strong><div class="small">Croatia</div></div></div><div class="country" onclick="selectCountry(this,'Cuba')"><span class="flag">🇨🇺</span><div><strong>Cuba</strong><div class="small">Cuba</div></div></div><div class="country" onclick="selectCountry(this,'Curaçao')"><span class="flag">🇨🇼</span><div><strong>Curaçao</strong><div class="small">Curaçao</div></div></div><div class="country" onclick="selectCountry(this,'Cyprus')"><span class="flag">🇨🇾</span><div><strong>Cyprus</strong><div class="small">Cyprus</div></div></div><div class="country" onclick="selectCountry(this,'Czechia')"><span class="flag">🇨🇿</span><div><strong>Czechia</strong><div class="small">Czechia</div></div></div><div class="country" onclick="selectCountry(this,'Côte d\'Ivoire')"><span class="flag">🇨🇮</span><div><strong>Côte d'Ivoire</strong><div class="small">Côte d'Ivoire</div></div></div><div class="country" onclick="selectCountry(this,'Denmark')"><span class="flag">🇩🇰</span><div><strong>Denmark</strong><div class="small">Denmark</div></div></div><div class="country" onclick="selectCountry(this,'Djibouti')"><span class="flag">🇩🇯</span><div><strong>Djibouti</strong><div class="small">Djibouti</div></div></div><div class="country" onclick="selectCountry(this,'Dominica')"><span class="flag">🇩🇲</span><div><strong>Dominica</strong><div class="small">Dominica</div></div></div><div class="country" onclick="selectCountry(this,'Dominican Republic')"><span class="flag">🇩🇴</span><div><strong>Dominican Republic</strong><div class="small">Dominican Republic</div></div></div><div class="country" onclick="selectCountry(this,'Ecuador')"><span class="flag">🇪🇨</span><div><strong>Ecuador</strong><div class="small">Ecuador</div></div></div><div class="country" onclick="selectCountry(this,'Egypt')"><span class="flag">🇪🇬</span><div><strong>Egypt</strong><div class="small">Egypt</div></div></div><div class="country" onclick="selectCountry(this,'El Salvador')"><span class="flag">🇸🇻</span><div><strong>El Salvador</strong><div class="small">El Salvador</div></div></div><div class="country" onclick="selectCountry(this,'Equatorial Guinea')"><span class="flag">🇬🇶</span><div><strong>Equatorial Guinea</strong><div class="small">Equatorial Guinea</div></div></div><div class="country" onclick="selectCountry(this,'Eritrea')"><span class="flag">🇪🇷</span><div><strong>Eritrea</strong><div class="small">Eritrea</div></div></div><div class="country" onclick="selectCountry(this,'Estonia')"><span class="flag">🇪🇪</span><div><strong>Estonia</strong><div class="small">Estonia</div></div></div><div class="country" onclick="selectCountry(this,'Eswatini')"><span class="flag">🇸🇿</span><div><strong>Eswatini</strong><div class="small">Eswatini</div></div></div><div class="country" onclick="selectCountry(this,'Ethiopia')"><span class="flag">🇪🇹</span><div><strong>Ethiopia</strong><div class="small">Ethiopia</div></div></div><div class="country" onclick="selectCountry(this,'Falkland Islands (Malvinas)')"><span class="flag">🇫🇰</span><div><strong>Falkland Islands (Malvinas)</strong><div class="small">Falkland Islands (Malvinas)</div></div></div><div class="country" onclick="selectCountry(this,'Faroe Islands')"><span class="flag">🇫🇴</span><div><strong>Faroe Islands</strong><div class="small">Faroe Islands</div></div></div><div class="country" onclick="selectCountry(this,'Fiji')"><span class="flag">🇫🇯</span><div><strong>Fiji</strong><div class="small">Fiji</div></div></div><div class="country" onclick="selectCountry(this,'Finland')"><span class="flag">🇫🇮</span><div><strong>Finland</strong><div class="small">Finland</div></div></div><div class="country" onclick="selectCountry(this,'France')"><span class="flag">🇫🇷</span><div><strong>France</strong><div class="small">France</div></div></div><div class="country" onclick="selectCountry(this,'French Guiana')"><span class="flag">🇬🇫</span><div><strong>French Guiana</strong><div class="small">French Guiana</div></div></div><div class="country" onclick="selectCountry(this,'French Polynesia')"><span class="flag">🇵🇫</span><div><strong>French Polynesia</strong><div class="small">French Polynesia</div></div></div><div class="country" onclick="selectCountry(this,'French Southern Territories')"><span class="flag">🇹🇫</span><div><strong>French Southern Territories</strong><div class="small">French Southern Territories</div></div></div><div class="country" onclick="selectCountry(this,'Gabon')"><span class="flag">🇬🇦</span><div><strong>Gabon</strong><div class="small">Gabon</div></div></div><div class="country" onclick="selectCountry(this,'Gambia')"><span class="flag">🇬🇲</span><div><strong>Gambia</strong><div class="small">Gambia</div></div></div><div class="country" onclick="selectCountry(this,'Georgia')"><span class="flag">🇬🇪</span><div><strong>Georgia</strong><div class="small">Georgia</div></div></div><div class="country" onclick="selectCountry(this,'Germany')"><span class="flag">🇩🇪</span><div><strong>Germany</strong><div class="small">Germany</div></div></div><div class="country" onclick="selectCountry(this,'Ghana')"><span class="flag">🇬🇭</span><div><strong>Ghana</strong><div class="small">Ghana</div></div></div><div class="country" onclick="selectCountry(this,'Gibraltar')"><span class="flag">🇬🇮</span><div><strong>Gibraltar</strong><div class="small">Gibraltar</div></div></div><div class="country" onclick="selectCountry(this,'Greece')"><span class="flag">🇬🇷</span><div><strong>Greece</strong><div class="small">Greece</div></div></div><div class="country" onclick="selectCountry(this,'Greenland')"><span class="flag">🇬🇱</span><div><strong>Greenland</strong><div class="small">Greenland</div></div></div><div class="country" onclick="selectCountry(this,'Grenada')"><span class="flag">🇬🇩</span><div><strong>Grenada</strong><div class="small">Grenada</div></div></div><div class="country" onclick="selectCountry(this,'Guadeloupe')"><span class="flag">🇬🇵</span><div><strong>Guadeloupe</strong><div class="small">Guadeloupe</div></div></div><div class="country" onclick="selectCountry(this,'Guam')"><span class="flag">🇬🇺</span><div><strong>Guam</strong><div class="small">Guam</div></div></div><div class="country" onclick="selectCountry(this,'Guatemala')"><span class="flag">🇬🇹</span><div><strong>Guatemala</strong><div class="small">Guatemala</div></div></div><div class="country" onclick="selectCountry(this,'Guernsey')"><span class="flag">🇬🇬</span><div><strong>Guernsey</strong><div class="small">Guernsey</div></div></div><div class="country" onclick="selectCountry(this,'Guinea')"><span class="flag">🇬🇳</span><div><strong>Guinea</strong><div class="small">Guinea</div></div></div><div class="country" onclick="selectCountry(this,'Guinea-Bissau')"><span class="flag">🇬🇼</span><div><strong>Guinea-Bissau</strong><div class="small">Guinea-Bissau</div></div></div><div class="country" onclick="selectCountry(this,'Guyana')"><span class="flag">🇬🇾</span><div><strong>Guyana</strong><div class="small">Guyana</div></div></div><div class="country" onclick="selectCountry(this,'Haiti')"><span class="flag">🇭🇹</span><div><strong>Haiti</strong><div class="small">Haiti</div></div></div><div class="country" onclick="selectCountry(this,'Heard Island and McDonald Islands')"><span class="flag">🇭🇲</span><div><strong>Heard Island and McDonald Islands</strong><div class="small">Heard Island and McDonald Islands</div></div></div><div class="country" onclick="selectCountry(this,'Holy See (Vatican City State)')"><span class="flag">🇻🇦</span><div><strong>Holy See (Vatican City State)</strong><div class="small">Holy See (Vatican City State)</div></div></div><div class="country" onclick="selectCountry(this,'Honduras')"><span class="flag">🇭🇳</span><div><strong>Honduras</strong><div class="small">Honduras</div></div></div><div class="country" onclick="selectCountry(this,'Hong Kong')"><span class="flag">🇭🇰</span><div><strong>Hong Kong</strong><div class="small">Hong Kong</div></div></div><div class="country" onclick="selectCountry(this,'Hungary')"><span class="flag">🇭🇺</span><div><strong>Hungary</strong><div class="small">Hungary</div></div></div><div class="country" onclick="selectCountry(this,'Iceland')"><span class="flag">🇮🇸</span><div><strong>Iceland</strong><div class="small">Iceland</div></div></div><div class="country" onclick="selectCountry(this,'India')"><span class="flag">🇮🇳</span><div><strong>India</strong><div class="small">India</div></div></div><div class="country" onclick="selectCountry(this,'Indonesia')"><span class="flag">🇮🇩</span><div><strong>Indonesia</strong><div class="small">Indonesia</div></div></div><div class="country" onclick="selectCountry(this,'Iran')"><span class="flag">🇮🇷</span><div><strong>Iran</strong><div class="small">Iran</div></div></div><div class="country" onclick="selectCountry(this,'Iraq')"><span class="flag">🇮🇶</span><div><strong>Iraq</strong><div class="small">Iraq</div></div></div><div class="country" onclick="selectCountry(this,'Ireland')"><span class="flag">🇮🇪</span><div><strong>Ireland</strong><div class="small">Ireland</div></div></div><div class="country" onclick="selectCountry(this,'Isle of Man')"><span class="flag">🇮🇲</span><div><strong>Isle of Man</strong><div class="small">Isle of Man</div></div></div><div class="country" onclick="selectCountry(this,'Israel')"><span class="flag">🇮🇱</span><div><strong>Israel</strong><div class="small">Israel</div></div></div><div class="country" onclick="selectCountry(this,'Italy')"><span class="flag">🇮🇹</span><div><strong>Italy</strong><div class="small">Italy</div></div></div><div class="country" onclick="selectCountry(this,'Jamaica')"><span class="flag">🇯🇲</span><div><strong>Jamaica</strong><div class="small">Jamaica</div></div></div><div class="country" onclick="selectCountry(this,'Japan')"><span class="flag">🇯🇵</span><div><strong>Japan</strong><div class="small">Japan</div></div></div><div class="country" onclick="selectCountry(this,'Jersey')"><span class="flag">🇯🇪</span><div><strong>Jersey</strong><div class="small">Jersey</div></div></div><div class="country" onclick="selectCountry(this,'Jordan')"><span class="flag">🇯🇴</span><div><strong>Jordan</strong><div class="small">Jordan</div></div></div><div class="country" onclick="selectCountry(this,'Kazakhstan')"><span class="flag">🇰🇿</span><div><strong>Kazakhstan</strong><div class="small">Kazakhstan</div></div></div><div class="country" onclick="selectCountry(this,'Kenya')"><span class="flag">🇰🇪</span><div><strong>Kenya</strong><div class="small">Kenya</div></div></div><div class="country" onclick="selectCountry(this,'Kiribati')"><span class="flag">🇰🇮</span><div><strong>Kiribati</strong><div class="small">Kiribati</div></div></div><div class="country" onclick="selectCountry(this,'Korea, Democratic People\'s Republic of')"><span class="flag">🇰🇵</span><div><strong>Korea, Democratic People's Republic of</strong><div class="small">Korea, Democratic People's Republic of</div></div></div><div class="country" onclick="selectCountry(this,'South Korea')"><span class="flag">🇰🇷</span><div><strong>South Korea</strong><div class="small">South Korea</div></div></div><div class="country" onclick="selectCountry(this,'Kuwait')"><span class="flag">🇰🇼</span><div><strong>Kuwait</strong><div class="small">Kuwait</div></div></div><div class="country" onclick="selectCountry(this,'Kyrgyzstan')"><span class="flag">🇰🇬</span><div><strong>Kyrgyzstan</strong><div class="small">Kyrgyzstan</div></div></div><div class="country" onclick="selectCountry(this,'Lao People\'s Democratic Republic')"><span class="flag">🇱🇦</span><div><strong>Lao People's Democratic Republic</strong><div class="small">Lao People's Democratic Republic</div></div></div><div class="country" onclick="selectCountry(this,'Latvia')"><span class="flag">🇱🇻</span><div><strong>Latvia</strong><div class="small">Latvia</div></div></div><div class="country" onclick="selectCountry(this,'Lebanon')"><span class="flag">🇱🇧</span><div><strong>Lebanon</strong><div class="small">Lebanon</div></div></div><div class="country" onclick="selectCountry(this,'Lesotho')"><span class="flag">🇱🇸</span><div><strong>Lesotho</strong><div class="small">Lesotho</div></div></div><div class="country" onclick="selectCountry(this,'Liberia')"><span class="flag">🇱🇷</span><div><strong>Liberia</strong><div class="small">Liberia</div></div></div><div class="country" onclick="selectCountry(this,'Libya')"><span class="flag">🇱🇾</span><div><strong>Libya</strong><div class="small">Libya</div></div></div><div class="country" onclick="selectCountry(this,'Liechtenstein')"><span class="flag">🇱🇮</span><div><strong>Liechtenstein</strong><div class="small">Liechtenstein</div></div></div><div class="country" onclick="selectCountry(this,'Lithuania')"><span class="flag">🇱🇹</span><div><strong>Lithuania</strong><div class="small">Lithuania</div></div></div><div class="country" onclick="selectCountry(this,'Luxembourg')"><span class="flag">🇱🇺</span><div><strong>Luxembourg</strong><div class="small">Luxembourg</div></div></div><div class="country" onclick="selectCountry(this,'Macao')"><span class="flag">🇲🇴</span><div><strong>Macao</strong><div class="small">Macao</div></div></div><div class="country" onclick="selectCountry(this,'Madagascar')"><span class="flag">🇲🇬</span><div><strong>Madagascar</strong><div class="small">Madagascar</div></div></div><div class="country" onclick="selectCountry(this,'Malawi')"><span class="flag">🇲🇼</span><div><strong>Malawi</strong><div class="small">Malawi</div></div></div><div class="country" onclick="selectCountry(this,'Malaysia')"><span class="flag">🇲🇾</span><div><strong>Malaysia</strong><div class="small">Malaysia</div></div></div><div class="country" onclick="selectCountry(this,'Maldives')"><span class="flag">🇲🇻</span><div><strong>Maldives</strong><div class="small">Maldives</div></div></div><div class="country" onclick="selectCountry(this,'Mali')"><span class="flag">🇲🇱</span><div><strong>Mali</strong><div class="small">Mali</div></div></div><div class="country" onclick="selectCountry(this,'Malta')"><span class="flag">🇲🇹</span><div><strong>Malta</strong><div class="small">Malta</div></div></div><div class="country" onclick="selectCountry(this,'Marshall Islands')"><span class="flag">🇲🇭</span><div><strong>Marshall Islands</strong><div class="small">Marshall Islands</div></div></div><div class="country" onclick="selectCountry(this,'Martinique')"><span class="flag">🇲🇶</span><div><strong>Martinique</strong><div class="small">Martinique</div></div></div><div class="country" onclick="selectCountry(this,'Mauritania')"><span class="flag">🇲🇷</span><div><strong>Mauritania</strong><div class="small">Mauritania</div></div></div><div class="country" onclick="selectCountry(this,'Mauritius')"><span class="flag">🇲🇺</span><div><strong>Mauritius</strong><div class="small">Mauritius</div></div></div><div class="country" onclick="selectCountry(this,'Mayotte')"><span class="flag">🇾🇹</span><div><strong>Mayotte</strong><div class="small">Mayotte</div></div></div><div class="country" onclick="selectCountry(this,'Mexico')"><span class="flag">🇲🇽</span><div><strong>Mexico</strong><div class="small">Mexico</div></div></div><div class="country" onclick="selectCountry(this,'Micronesia')"><span class="flag">🇫🇲</span><div><strong>Micronesia</strong><div class="small">Micronesia</div></div></div><div class="country" onclick="selectCountry(this,'Moldova')"><span class="flag">🇲🇩</span><div><strong>Moldova</strong><div class="small">Moldova</div></div></div><div class="country" onclick="selectCountry(this,'Monaco')"><span class="flag">🇲🇨</span><div><strong>Monaco</strong><div class="small">Monaco</div></div></div><div class="country" onclick="selectCountry(this,'Mongolia')"><span class="flag">🇲🇳</span><div><strong>Mongolia</strong><div class="small">Mongolia</div></div></div><div class="country" onclick="selectCountry(this,'Montenegro')"><span class="flag">🇲🇪</span><div><strong>Montenegro</strong><div class="small">Montenegro</div></div></div><div class="country" onclick="selectCountry(this,'Montserrat')"><span class="flag">🇲🇸</span><div><strong>Montserrat</strong><div class="small">Montserrat</div></div></div><div class="country" onclick="selectCountry(this,'Morocco')"><span class="flag">🇲🇦</span><div><strong>Morocco</strong><div class="small">Morocco</div></div></div><div class="country" onclick="selectCountry(this,'Mozambique')"><span class="flag">🇲🇿</span><div><strong>Mozambique</strong><div class="small">Mozambique</div></div></div><div class="country" onclick="selectCountry(this,'Myanmar')"><span class="flag">🇲🇲</span><div><strong>Myanmar</strong><div class="small">Myanmar</div></div></div><div class="country" onclick="selectCountry(this,'Namibia')"><span class="flag">🇳🇦</span><div><strong>Namibia</strong><div class="small">Namibia</div></div></div><div class="country" onclick="selectCountry(this,'Nauru')"><span class="flag">🇳🇷</span><div><strong>Nauru</strong><div class="small">Nauru</div></div></div><div class="country" onclick="selectCountry(this,'Nepal')"><span class="flag">🇳🇵</span><div><strong>Nepal</strong><div class="small">Nepal</div></div></div><div class="country" onclick="selectCountry(this,'Netherlands')"><span class="flag">🇳🇱</span><div><strong>Netherlands</strong><div class="small">Netherlands</div></div></div><div class="country" onclick="selectCountry(this,'New Caledonia')"><span class="flag">🇳🇨</span><div><strong>New Caledonia</strong><div class="small">New Caledonia</div></div></div><div class="country" onclick="selectCountry(this,'New Zealand')"><span class="flag">🇳🇿</span><div><strong>New Zealand</strong><div class="small">New Zealand</div></div></div><div class="country" onclick="selectCountry(this,'Nicaragua')"><span class="flag">🇳🇮</span><div><strong>Nicaragua</strong><div class="small">Nicaragua</div></div></div><div class="country" onclick="selectCountry(this,'Niger')"><span class="flag">🇳🇪</span><div><strong>Niger</strong><div class="small">Niger</div></div></div><div class="country" onclick="selectCountry(this,'Nigeria')"><span class="flag">🇳🇬</span><div><strong>Nigeria</strong><div class="small">Nigeria</div></div></div><div class="country" onclick="selectCountry(this,'Niue')"><span class="flag">🇳🇺</span><div><strong>Niue</strong><div class="small">Niue</div></div></div><div class="country" onclick="selectCountry(this,'Norfolk Island')"><span class="flag">🇳🇫</span><div><strong>Norfolk Island</strong><div class="small">Norfolk Island</div></div></div><div class="country" onclick="selectCountry(this,'North Macedonia')"><span class="flag">🇲🇰</span><div><strong>North Macedonia</strong><div class="small">North Macedonia</div></div></div><div class="country" onclick="selectCountry(this,'Northern Mariana Islands')"><span class="flag">🇲🇵</span><div><strong>Northern Mariana Islands</strong><div class="small">Northern Mariana Islands</div></div></div><div class="country" onclick="selectCountry(this,'Norway')"><span class="flag">🇳🇴</span><div><strong>Norway</strong><div class="small">Norway</div></div></div><div class="country" onclick="selectCountry(this,'Oman')"><span class="flag">🇴🇲</span><div><strong>Oman</strong><div class="small">Oman</div></div></div><div class="country" onclick="selectCountry(this,'Pakistan')"><span class="flag">🇵🇰</span><div><strong>Pakistan</strong><div class="small">Pakistan</div></div></div><div class="country" onclick="selectCountry(this,'Palau')"><span class="flag">🇵🇼</span><div><strong>Palau</strong><div class="small">Palau</div></div></div><div class="country" onclick="selectCountry(this,'Palestine')"><span class="flag">🇵🇸</span><div><strong>Palestine</strong><div class="small">Palestine</div></div></div><div class="country" onclick="selectCountry(this,'Panama')"><span class="flag">🇵🇦</span><div><strong>Panama</strong><div class="small">Panama</div></div></div><div class="country" onclick="selectCountry(this,'Papua New Guinea')"><span class="flag">🇵🇬</span><div><strong>Papua New Guinea</strong><div class="small">Papua New Guinea</div></div></div><div class="country" onclick="selectCountry(this,'Paraguay')"><span class="flag">🇵🇾</span><div><strong>Paraguay</strong><div class="small">Paraguay</div></div></div><div class="country" onclick="selectCountry(this,'Peru')"><span class="flag">🇵🇪</span><div><strong>Peru</strong><div class="small">Peru</div></div></div><div class="country" onclick="selectCountry(this,'Philippines')"><span class="flag">🇵🇭</span><div><strong>Philippines</strong><div class="small">Philippines</div></div></div><div class="country" onclick="selectCountry(this,'Pitcairn')"><span class="flag">🇵🇳</span><div><strong>Pitcairn</strong><div class="small">Pitcairn</div></div></div><div class="country" onclick="selectCountry(this,'Poland')"><span class="flag">🇵🇱</span><div><strong>Poland</strong><div class="small">Poland</div></div></div><div class="country" onclick="selectCountry(this,'Portugal')"><span class="flag">🇵🇹</span><div><strong>Portugal</strong><div class="small">Portugal</div></div></div><div class="country" onclick="selectCountry(this,'Puerto Rico')"><span class="flag">🇵🇷</span><div><strong>Puerto Rico</strong><div class="small">Puerto Rico</div></div></div><div class="country" onclick="selectCountry(this,'Qatar')"><span class="flag">🇶🇦</span><div><strong>Qatar</strong><div class="small">Qatar</div></div></div><div class="country" onclick="selectCountry(this,'Romania')"><span class="flag">🇷🇴</span><div><strong>Romania</strong><div class="small">Romania</div></div></div><div class="country" onclick="selectCountry(this,'Russia')"><span class="flag">🇷🇺</span><div><strong>Russia</strong><div class="small">Russia</div></div></div><div class="country" onclick="selectCountry(this,'Rwanda')"><span class="flag">🇷🇼</span><div><strong>Rwanda</strong><div class="small">Rwanda</div></div></div><div class="country" onclick="selectCountry(this,'Réunion')"><span class="flag">🇷🇪</span><div><strong>Réunion</strong><div class="small">Réunion</div></div></div><div class="country" onclick="selectCountry(this,'Saint Barthélemy')"><span class="flag">🇧🇱</span><div><strong>Saint Barthélemy</strong><div class="small">Saint Barthélemy</div></div></div><div class="country" onclick="selectCountry(this,'Saint Helena, Ascension and Tristan da Cunha')"><span class="flag">🇸🇭</span><div><strong>Saint Helena, Ascension and Tristan da Cunha</strong><div class="small">Saint Helena, Ascension and Tristan da Cunha</div></div></div><div class="country" onclick="selectCountry(this,'Saint Kitts and Nevis')"><span class="flag">🇰🇳</span><div><strong>Saint Kitts and Nevis</strong><div class="small">Saint Kitts and Nevis</div></div></div><div class="country" onclick="selectCountry(this,'Saint Lucia')"><span class="flag">🇱🇨</span><div><strong>Saint Lucia</strong><div class="small">Saint Lucia</div></div></div><div class="country" onclick="selectCountry(this,'Saint Martin (French part)')"><span class="flag">🇲🇫</span><div><strong>Saint Martin (French part)</strong><div class="small">Saint Martin (French part)</div></div></div><div class="country" onclick="selectCountry(this,'Saint Pierre and Miquelon')"><span class="flag">🇵🇲</span><div><strong>Saint Pierre and Miquelon</strong><div class="small">Saint Pierre and Miquelon</div></div></div><div class="country" onclick="selectCountry(this,'Saint Vincent and the Grenadines')"><span class="flag">🇻🇨</span><div><strong>Saint Vincent and the Grenadines</strong><div class="small">Saint Vincent and the Grenadines</div></div></div><div class="country" onclick="selectCountry(this,'Samoa')"><span class="flag">🇼🇸</span><div><strong>Samoa</strong><div class="small">Samoa</div></div></div><div class="country" onclick="selectCountry(this,'San Marino')"><span class="flag">🇸🇲</span><div><strong>San Marino</strong><div class="small">San Marino</div></div></div><div class="country" onclick="selectCountry(this,'Sao Tome and Principe')"><span class="flag">🇸🇹</span><div><strong>Sao Tome and Principe</strong><div class="small">Sao Tome and Principe</div></div></div><div class="country" onclick="selectCountry(this,'Saudi Arabia')"><span class="flag">🇸🇦</span><div><strong>Saudi Arabia</strong><div class="small">Saudi Arabia</div></div></div><div class="country" onclick="selectCountry(this,'Senegal')"><span class="flag">🇸🇳</span><div><strong>Senegal</strong><div class="small">Senegal</div></div></div><div class="country" onclick="selectCountry(this,'Serbia')"><span class="flag">🇷🇸</span><div><strong>Serbia</strong><div class="small">Serbia</div></div></div><div class="country" onclick="selectCountry(this,'Seychelles')"><span class="flag">🇸🇨</span><div><strong>Seychelles</strong><div class="small">Seychelles</div></div></div><div class="country" onclick="selectCountry(this,'Sierra Leone')"><span class="flag">🇸🇱</span><div><strong>Sierra Leone</strong><div class="small">Sierra Leone</div></div></div><div class="country" onclick="selectCountry(this,'Singapore')"><span class="flag">🇸🇬</span><div><strong>Singapore</strong><div class="small">Singapore</div></div></div><div class="country" onclick="selectCountry(this,'Sint Maarten (Dutch part)')"><span class="flag">🇸🇽</span><div><strong>Sint Maarten (Dutch part)</strong><div class="small">Sint Maarten (Dutch part)</div></div></div><div class="country" onclick="selectCountry(this,'Slovakia')"><span class="flag">🇸🇰</span><div><strong>Slovakia</strong><div class="small">Slovakia</div></div></div><div class="country" onclick="selectCountry(this,'Slovenia')"><span class="flag">🇸🇮</span><div><strong>Slovenia</strong><div class="small">Slovenia</div></div></div><div class="country" onclick="selectCountry(this,'Solomon Islands')"><span class="flag">🇸🇧</span><div><strong>Solomon Islands</strong><div class="small">Solomon Islands</div></div></div><div class="country" onclick="selectCountry(this,'Somalia')"><span class="flag">🇸🇴</span><div><strong>Somalia</strong><div class="small">Somalia</div></div></div><div class="country" onclick="selectCountry(this,'South Africa')"><span class="flag">🇿🇦</span><div><strong>South Africa</strong><div class="small">South Africa</div></div></div><div class="country" onclick="selectCountry(this,'South Georgia and the South Sandwich Islands')"><span class="flag">🇬🇸</span><div><strong>South Georgia and the South Sandwich Islands</strong><div class="small">South Georgia and the South Sandwich Islands</div></div></div><div class="country" onclick="selectCountry(this,'South Sudan')"><span class="flag">🇸🇸</span><div><strong>South Sudan</strong><div class="small">South Sudan</div></div></div><div class="country" onclick="selectCountry(this,'Spain')"><span class="flag">🇪🇸</span><div><strong>Spain</strong><div class="small">Spain</div></div></div><div class="country" onclick="selectCountry(this,'Sri Lanka')"><span class="flag">🇱🇰</span><div><strong>Sri Lanka</strong><div class="small">Sri Lanka</div></div></div><div class="country" onclick="selectCountry(this,'Sudan')"><span class="flag">🇸🇩</span><div><strong>Sudan</strong><div class="small">Sudan</div></div></div><div class="country" onclick="selectCountry(this,'Suriname')"><span class="flag">🇸🇷</span><div><strong>Suriname</strong><div class="small">Suriname</div></div></div><div class="country" onclick="selectCountry(this,'Svalbard and Jan Mayen')"><span class="flag">🇸🇯</span><div><strong>Svalbard and Jan Mayen</strong><div class="small">Svalbard and Jan Mayen</div></div></div><div class="country" onclick="selectCountry(this,'Sweden')"><span class="flag">🇸🇪</span><div><strong>Sweden</strong><div class="small">Sweden</div></div></div><div class="country" onclick="selectCountry(this,'Switzerland')"><span class="flag">🇨🇭</span><div><strong>Switzerland</strong><div class="small">Switzerland</div></div></div><div class="country" onclick="selectCountry(this,'Syria')"><span class="flag">🇸🇾</span><div><strong>Syria</strong><div class="small">Syria</div></div></div><div class="country" onclick="selectCountry(this,'Taiwan, Province of China')"><span class="flag">🇹🇼</span><div><strong>Taiwan, Province of China</strong><div class="small">Taiwan, Province of China</div></div></div><div class="country" onclick="selectCountry(this,'Tajikistan')"><span class="flag">🇹🇯</span><div><strong>Tajikistan</strong><div class="small">Tajikistan</div></div></div><div class="country" onclick="selectCountry(this,'Tanzania')"><span class="flag">🇹🇿</span><div><strong>Tanzania</strong><div class="small">Tanzania</div></div></div><div class="country" onclick="selectCountry(this,'Thailand')"><span class="flag">🇹🇭</span><div><strong>Thailand</strong><div class="small">Thailand</div></div></div><div class="country" onclick="selectCountry(this,'Timor-Leste')"><span class="flag">🇹🇱</span><div><strong>Timor-Leste</strong><div class="small">Timor-Leste</div></div></div><div class="country" onclick="selectCountry(this,'Togo')"><span class="flag">🇹🇬</span><div><strong>Togo</strong><div class="small">Togo</div></div></div><div class="country" onclick="selectCountry(this,'Tokelau')"><span class="flag">🇹🇰</span><div><strong>Tokelau</strong><div class="small">Tokelau</div></div></div><div class="country" onclick="selectCountry(this,'Tonga')"><span class="flag">🇹🇴</span><div><strong>Tonga</strong><div class="small">Tonga</div></div></div><div class="country" onclick="selectCountry(this,'Trinidad and Tobago')"><span class="flag">🇹🇹</span><div><strong>Trinidad and Tobago</strong><div class="small">Trinidad and Tobago</div></div></div><div class="country" onclick="selectCountry(this,'Tunisia')"><span class="flag">🇹🇳</span><div><strong>Tunisia</strong><div class="small">Tunisia</div></div></div><div class="country" onclick="selectCountry(this,'Turkmenistan')"><span class="flag">🇹🇲</span><div><strong>Turkmenistan</strong><div class="small">Turkmenistan</div></div></div><div class="country" onclick="selectCountry(this,'Turks and Caicos Islands')"><span class="flag">🇹🇨</span><div><strong>Turks and Caicos Islands</strong><div class="small">Turks and Caicos Islands</div></div></div><div class="country" onclick="selectCountry(this,'Tuvalu')"><span class="flag">🇹🇻</span><div><strong>Tuvalu</strong><div class="small">Tuvalu</div></div></div><div class="country" onclick="selectCountry(this,'Turkey')"><span class="flag">🇹🇷</span><div><strong>Turkey</strong><div class="small">Turkey</div></div></div><div class="country" onclick="selectCountry(this,'Uganda')"><span class="flag">🇺🇬</span><div><strong>Uganda</strong><div class="small">Uganda</div></div></div><div class="country" onclick="selectCountry(this,'Ukraine')"><span class="flag">🇺🇦</span><div><strong>Ukraine</strong><div class="small">Ukraine</div></div></div><div class="country" onclick="selectCountry(this,'United Arab Emirates')"><span class="flag">🇦🇪</span><div><strong>United Arab Emirates</strong><div class="small">United Arab Emirates</div></div></div><div class="country" onclick="selectCountry(this,'United Kingdom')"><span class="flag">🇬🇧</span><div><strong>United Kingdom</strong><div class="small">United Kingdom</div></div></div><div class="country" onclick="selectCountry(this,'United States')"><span class="flag">🇺🇸</span><div><strong>United States</strong><div class="small">United States</div></div></div><div class="country" onclick="selectCountry(this,'United States Minor Outlying Islands')"><span class="flag">🇺🇲</span><div><strong>United States Minor Outlying Islands</strong><div class="small">United States Minor Outlying Islands</div></div></div><div class="country" onclick="selectCountry(this,'Uruguay')"><span class="flag">🇺🇾</span><div><strong>Uruguay</strong><div class="small">Uruguay</div></div></div><div class="country" onclick="selectCountry(this,'Uzbekistan')"><span class="flag">🇺🇿</span><div><strong>Uzbekistan</strong><div class="small">Uzbekistan</div></div></div><div class="country" onclick="selectCountry(this,'Vanuatu')"><span class="flag">🇻🇺</span><div><strong>Vanuatu</strong><div class="small">Vanuatu</div></div></div><div class="country" onclick="selectCountry(this,'Venezuela')"><span class="flag">🇻🇪</span><div><strong>Venezuela</strong><div class="small">Venezuela</div></div></div><div class="country" onclick="selectCountry(this,'Vietnam')"><span class="flag">🇻🇳</span><div><strong>Vietnam</strong><div class="small">Vietnam</div></div></div><div class="country" onclick="selectCountry(this,'Virgin Islands, British')"><span class="flag">🇻🇬</span><div><strong>Virgin Islands, British</strong><div class="small">Virgin Islands, British</div></div></div><div class="country" onclick="selectCountry(this,'Virgin Islands, U.S.')"><span class="flag">🇻🇮</span><div><strong>Virgin Islands, U.S.</strong><div class="small">Virgin Islands, U.S.</div></div></div><div class="country" onclick="selectCountry(this,'Wallis and Futuna')"><span class="flag">🇼🇫</span><div><strong>Wallis and Futuna</strong><div class="small">Wallis and Futuna</div></div></div><div class="country" onclick="selectCountry(this,'Western Sahara')"><span class="flag">🇪🇭</span><div><strong>Western Sahara</strong><div class="small">Western Sahara</div></div></div><div class="country" onclick="selectCountry(this,'Yemen')"><span class="flag">🇾🇪</span><div><strong>Yemen</strong><div class="small">Yemen</div></div></div><div class="country" onclick="selectCountry(this,'Zambia')"><span class="flag">🇿🇲</span><div><strong>Zambia</strong><div class="small">Zambia</div></div></div><div class="country" onclick="selectCountry(this,'Zimbabwe')"><span class="flag">🇿🇼</span><div><strong>Zimbabwe</strong><div class="small">Zimbabwe</div></div></div><div class="country" onclick="selectCountry(this,'Åland Islands')"><span class="flag">🇦🇽</span><div><strong>Åland Islands</strong><div class="small">Åland Islands</div></div></div></div><div class="spacer"></div><button class="btn primary" onclick="go(4)">Continue</button></section>
+<section id="s4" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(3)">‹</button><div class="progress"><span style="width:28%"></span></div><div class="pin">📍</div><h2>Where are you now?</h2><p class="sub">We use your city to help you find relevant people nearby. Your exact location is never shown.</p><button id="useLocationBtn" class="btn primary" onclick="useMyLocation()">📍 Use My Location</button><div id="locationStatus" class="small" style="text-align:center;margin-top:9px;min-height:18px"></div><button class="btn secondary" onclick="go('4city')">Choose My City</button><div class="note">🔒 Privacy first — we'll show an approximate area, not your exact address or live location.</div></section>
+<section id="s4city" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(4)">‹</button><div class="progress"><span style="width:35%"></span></div><h2>Choose your city</h2><p class="sub">Search for any city in the world. Select the city where you currently live.</p><input id="citySearch" class="search" placeholder="Search any city worldwide…" autocomplete="off" oninput="searchOnboardingCity(this.value)" onkeydown="if(event.key==='Enter')searchOnboardingCity(this.value,true)"><div id="onboardingCityStatus" class="small" style="margin-top:8px"></div><div id="onboardingCities"></div><div class="spacer"></div><button id="cityContinueBtn" class="btn primary" onclick="continueFromCity()">Continue</button></section>
+<section id="s5" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(4)">‹</button><div class="progress"><span style="width:42%"></span></div><h2>What languages do you speak?</h2><p class="sub">Select all that apply. This helps us find people you can communicate with.</p><div id="languages"><div style="position:sticky;top:0;z-index:2;background:#fff;padding:8px 0 10px"><input id="languageSearch" type="search" placeholder="🔎 Search any language…" oninput="filterLanguages(this.value)" style="width:100%;box-sizing:border-box"></div><div class="choice" data-language="afrikaans" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Afrikaans</strong><div class="small">Afrikaans</div></div></div><span class="check">✓</span></div><div class="choice" data-language="albanian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Albanian</strong><div class="small">Albanian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="amharic" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Amharic</strong><div class="small">Amharic</div></div></div><span class="check">✓</span></div><div class="choice" data-language="arabic" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Arabic</strong><div class="small">Arabic</div></div></div><span class="check">✓</span></div><div class="choice" data-language="armenian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Armenian</strong><div class="small">Armenian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="assamese" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Assamese</strong><div class="small">Assamese</div></div></div><span class="check">✓</span></div><div class="choice" data-language="azerbaijani" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Azerbaijani</strong><div class="small">Azerbaijani</div></div></div><span class="check">✓</span></div><div class="choice" data-language="basque" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Basque</strong><div class="small">Basque</div></div></div><span class="check">✓</span></div><div class="choice" data-language="belarusian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Belarusian</strong><div class="small">Belarusian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="bengali" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Bengali</strong><div class="small">Bengali</div></div></div><span class="check">✓</span></div><div class="choice" data-language="bhojpuri" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Bhojpuri</strong><div class="small">Bhojpuri</div></div></div><span class="check">✓</span></div><div class="choice" data-language="bosnian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Bosnian</strong><div class="small">Bosnian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="bulgarian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Bulgarian</strong><div class="small">Bulgarian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="burmese" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Burmese</strong><div class="small">Burmese</div></div></div><span class="check">✓</span></div><div class="choice" data-language="catalan" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Catalan</strong><div class="small">Catalan</div></div></div><span class="check">✓</span></div><div class="choice" data-language="chichewa" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Chichewa</strong><div class="small">Chichewa</div></div></div><span class="check">✓</span></div><div class="choice" data-language="chinese" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Chinese</strong><div class="small">Chinese</div></div></div><span class="check">✓</span></div><div class="choice" data-language="corsican" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Corsican</strong><div class="small">Corsican</div></div></div><span class="check">✓</span></div><div class="choice" data-language="croatian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Croatian</strong><div class="small">Croatian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="czech" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Czech</strong><div class="small">Czech</div></div></div><span class="check">✓</span></div><div class="choice" data-language="danish" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Danish</strong><div class="small">Danish</div></div></div><span class="check">✓</span></div><div class="choice" data-language="dutch" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Dutch</strong><div class="small">Dutch</div></div></div><span class="check">✓</span></div><div class="choice" data-language="english" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>English</strong><div class="small">English</div></div></div><span class="check">✓</span></div><div class="choice" data-language="estonian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Estonian</strong><div class="small">Estonian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="fijian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Fijian</strong><div class="small">Fijian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="filipino" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Filipino</strong><div class="small">Filipino</div></div></div><span class="check">✓</span></div><div class="choice" data-language="finnish" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Finnish</strong><div class="small">Finnish</div></div></div><span class="check">✓</span></div><div class="choice" data-language="french" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>French</strong><div class="small">French</div></div></div><span class="check">✓</span></div><div class="choice" data-language="frisian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Frisian</strong><div class="small">Frisian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="gaelic" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Gaelic</strong><div class="small">Gaelic</div></div></div><span class="check">✓</span></div><div class="choice" data-language="galician" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Galician</strong><div class="small">Galician</div></div></div><span class="check">✓</span></div><div class="choice" data-language="ganda" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Ganda</strong><div class="small">Ganda</div></div></div><span class="check">✓</span></div><div class="choice" data-language="georgian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Georgian</strong><div class="small">Georgian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="german" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>German</strong><div class="small">German</div></div></div><span class="check">✓</span></div><div class="choice" data-language="greek" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Greek</strong><div class="small">Greek</div></div></div><span class="check">✓</span></div><div class="choice" data-language="guarani" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Guarani</strong><div class="small">Guarani</div></div></div><span class="check">✓</span></div><div class="choice" data-language="gujarati" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Gujarati</strong><div class="small">Gujarati</div></div></div><span class="check">✓</span></div><div class="choice" data-language="haitian creole" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Haitian Creole</strong><div class="small">Haitian Creole</div></div></div><span class="check">✓</span></div><div class="choice" data-language="hausa" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Hausa</strong><div class="small">Hausa</div></div></div><span class="check">✓</span></div><div class="choice" data-language="hebrew" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Hebrew</strong><div class="small">Hebrew</div></div></div><span class="check">✓</span></div><div class="choice" data-language="hindi" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Hindi</strong><div class="small">Hindi</div></div></div><span class="check">✓</span></div><div class="choice" data-language="hmong" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Hmong</strong><div class="small">Hmong</div></div></div><span class="check">✓</span></div><div class="choice" data-language="hungarian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Hungarian</strong><div class="small">Hungarian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="icelandic" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Icelandic</strong><div class="small">Icelandic</div></div></div><span class="check">✓</span></div><div class="choice" data-language="igbo" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Igbo</strong><div class="small">Igbo</div></div></div><span class="check">✓</span></div><div class="choice" data-language="ilocano" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Ilocano</strong><div class="small">Ilocano</div></div></div><span class="check">✓</span></div><div class="choice" data-language="indonesian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Indonesian</strong><div class="small">Indonesian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="inuktitut" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Inuktitut</strong><div class="small">Inuktitut</div></div></div><span class="check">✓</span></div><div class="choice" data-language="irish" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Irish</strong><div class="small">Irish</div></div></div><span class="check">✓</span></div><div class="choice" data-language="italian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Italian</strong><div class="small">Italian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="japanese" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Japanese</strong><div class="small">Japanese</div></div></div><span class="check">✓</span></div><div class="choice" data-language="javanese" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Javanese</strong><div class="small">Javanese</div></div></div><span class="check">✓</span></div><div class="choice" data-language="kabyle" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Kabyle</strong><div class="small">Kabyle</div></div></div><span class="check">✓</span></div><div class="choice" data-language="kannada" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Kannada</strong><div class="small">Kannada</div></div></div><span class="check">✓</span></div><div class="choice" data-language="kashmiri" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Kashmiri</strong><div class="small">Kashmiri</div></div></div><span class="check">✓</span></div><div class="choice" data-language="kazakh" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Kazakh</strong><div class="small">Kazakh</div></div></div><span class="check">✓</span></div><div class="choice" data-language="khmer" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Khmer</strong><div class="small">Khmer</div></div></div><span class="check">✓</span></div><div class="choice" data-language="kinyarwanda" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Kinyarwanda</strong><div class="small">Kinyarwanda</div></div></div><span class="check">✓</span></div><div class="choice" data-language="korean" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Korean</strong><div class="small">Korean</div></div></div><span class="check">✓</span></div><div class="choice" data-language="kurdish" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Kurdish</strong><div class="small">Kurdish</div></div></div><span class="check">✓</span></div><div class="choice" data-language="kyrgyz" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Kyrgyz</strong><div class="small">Kyrgyz</div></div></div><span class="check">✓</span></div><div class="choice" data-language="lao" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Lao</strong><div class="small">Lao</div></div></div><span class="check">✓</span></div><div class="choice" data-language="latin" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Latin</strong><div class="small">Latin</div></div></div><span class="check">✓</span></div><div class="choice" data-language="latvian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Latvian</strong><div class="small">Latvian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="lingala" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Lingala</strong><div class="small">Lingala</div></div></div><span class="check">✓</span></div><div class="choice" data-language="lithuanian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Lithuanian</strong><div class="small">Lithuanian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="luxembourgish" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Luxembourgish</strong><div class="small">Luxembourgish</div></div></div><span class="check">✓</span></div><div class="choice" data-language="macedonian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Macedonian</strong><div class="small">Macedonian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="malay" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Malay</strong><div class="small">Malay</div></div></div><span class="check">✓</span></div><div class="choice" data-language="malayalam" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Malayalam</strong><div class="small">Malayalam</div></div></div><span class="check">✓</span></div><div class="choice" data-language="maltese" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Maltese</strong><div class="small">Maltese</div></div></div><span class="check">✓</span></div><div class="choice" data-language="maori" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Maori</strong><div class="small">Maori</div></div></div><span class="check">✓</span></div><div class="choice" data-language="marathi" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Marathi</strong><div class="small">Marathi</div></div></div><span class="check">✓</span></div><div class="choice" data-language="mongolian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Mongolian</strong><div class="small">Mongolian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="nahuatl" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Nahuatl</strong><div class="small">Nahuatl</div></div></div><span class="check">✓</span></div><div class="choice" data-language="nepali" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Nepali</strong><div class="small">Nepali</div></div></div><span class="check">✓</span></div><div class="choice" data-language="norwegian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Norwegian</strong><div class="small">Norwegian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="occitan" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Occitan</strong><div class="small">Occitan</div></div></div><span class="check">✓</span></div><div class="choice" data-language="oromo" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Oromo</strong><div class="small">Oromo</div></div></div><span class="check">✓</span></div><div class="choice" data-language="pashto" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Pashto</strong><div class="small">Pashto</div></div></div><span class="check">✓</span></div><div class="choice" data-language="persian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Persian</strong><div class="small">Persian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="polish" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Polish</strong><div class="small">Polish</div></div></div><span class="check">✓</span></div><div class="choice" data-language="portuguese" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Portuguese</strong><div class="small">Portuguese</div></div></div><span class="check">✓</span></div><div class="choice" data-language="punjabi" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Punjabi</strong><div class="small">Punjabi</div></div></div><span class="check">✓</span></div><div class="choice" data-language="quechua" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Quechua</strong><div class="small">Quechua</div></div></div><span class="check">✓</span></div><div class="choice" data-language="romanian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Romanian</strong><div class="small">Romanian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="russian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Russian</strong><div class="small">Russian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="samoan" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Samoan</strong><div class="small">Samoan</div></div></div><span class="check">✓</span></div><div class="choice" data-language="scots" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Scots</strong><div class="small">Scots</div></div></div><span class="check">✓</span></div><div class="choice" data-language="serbian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Serbian</strong><div class="small">Serbian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="sesotho" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Sesotho</strong><div class="small">Sesotho</div></div></div><span class="check">✓</span></div><div class="choice" data-language="shan" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Shan</strong><div class="small">Shan</div></div></div><span class="check">✓</span></div><div class="choice" data-language="shona" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Shona</strong><div class="small">Shona</div></div></div><span class="check">✓</span></div><div class="choice" data-language="sindhi" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Sindhi</strong><div class="small">Sindhi</div></div></div><span class="check">✓</span></div><div class="choice" data-language="sinhala" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Sinhala</strong><div class="small">Sinhala</div></div></div><span class="check">✓</span></div><div class="choice" data-language="slovak" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Slovak</strong><div class="small">Slovak</div></div></div><span class="check">✓</span></div><div class="choice" data-language="slovenian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Slovenian</strong><div class="small">Slovenian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="somali" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Somali</strong><div class="small">Somali</div></div></div><span class="check">✓</span></div><div class="choice" data-language="spanish" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Spanish</strong><div class="small">Spanish</div></div></div><span class="check">✓</span></div><div class="choice" data-language="sundanese" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Sundanese</strong><div class="small">Sundanese</div></div></div><span class="check">✓</span></div><div class="choice" data-language="swahili" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Swahili</strong><div class="small">Swahili</div></div></div><span class="check">✓</span></div><div class="choice" data-language="swedish" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Swedish</strong><div class="small">Swedish</div></div></div><span class="check">✓</span></div><div class="choice" data-language="tajik" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Tajik</strong><div class="small">Tajik</div></div></div><span class="check">✓</span></div><div class="choice" data-language="tamil" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Tamil</strong><div class="small">Tamil</div></div></div><span class="check">✓</span></div><div class="choice" data-language="tatar" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Tatar</strong><div class="small">Tatar</div></div></div><span class="check">✓</span></div><div class="choice" data-language="telugu" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Telugu</strong><div class="small">Telugu</div></div></div><span class="check">✓</span></div><div class="choice" data-language="thai" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Thai</strong><div class="small">Thai</div></div></div><span class="check">✓</span></div><div class="choice" data-language="tigrinya" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Tigrinya</strong><div class="small">Tigrinya</div></div></div><span class="check">✓</span></div><div class="choice" data-language="tsonga" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Tsonga</strong><div class="small">Tsonga</div></div></div><span class="check">✓</span></div><div class="choice" data-language="tswana" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Tswana</strong><div class="small">Tswana</div></div></div><span class="check">✓</span></div><div class="choice" data-language="turkish" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Turkish</strong><div class="small">Turkish</div></div></div><span class="check">✓</span></div><div class="choice" data-language="turkmen" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Turkmen</strong><div class="small">Turkmen</div></div></div><span class="check">✓</span></div><div class="choice" data-language="ukrainian" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Ukrainian</strong><div class="small">Ukrainian</div></div></div><span class="check">✓</span></div><div class="choice" data-language="urdu" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Urdu</strong><div class="small">Urdu</div></div></div><span class="check">✓</span></div><div class="choice" data-language="uyghur" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Uyghur</strong><div class="small">Uyghur</div></div></div><span class="check">✓</span></div><div class="choice" data-language="uzbek" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Uzbek</strong><div class="small">Uzbek</div></div></div><span class="check">✓</span></div><div class="choice" data-language="vietnamese" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Vietnamese</strong><div class="small">Vietnamese</div></div></div><span class="check">✓</span></div><div class="choice" data-language="welsh" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Welsh</strong><div class="small">Welsh</div></div></div><span class="check">✓</span></div><div class="choice" data-language="wolof" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Wolof</strong><div class="small">Wolof</div></div></div><span class="check">✓</span></div><div class="choice" data-language="xhosa" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Xhosa</strong><div class="small">Xhosa</div></div></div><span class="check">✓</span></div><div class="choice" data-language="yiddish" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Yiddish</strong><div class="small">Yiddish</div></div></div><span class="check">✓</span></div><div class="choice" data-language="yoruba" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Yoruba</strong><div class="small">Yoruba</div></div></div><span class="check">✓</span></div><div class="choice" data-language="zulu" onclick="toggle(this)"><div class="choice-left"><span class="icon">🌐</span><div><strong>Zulu</strong><div class="small">Zulu</div></div></div><span class="check">✓</span></div></div><div class="spacer"></div><button class="btn primary" onclick="go(6)">Continue</button></section>
+<section id="s6" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(5)">‹</button><div class="progress"><span style="width:56%"></span></div><h2>What do you want?</h2><p class="sub">Choose what you're hoping to find on Near-Native.</p><div class="choice" onclick="toggle(this)"><div class="choice-left"><span class="icon">👋</span><div><strong>Meet new people</strong><div class="small">Make genuine connections</div></div></div><span class="check">✓</span></div><div class="choice" onclick="toggle(this)"><div class="choice-left"><span class="icon">🏠</span><div><strong>Find my community</strong><div class="small">Discover people from home</div></div></div><span class="check">✓</span></div><div class="choice" onclick="toggle(this)"><div class="choice-left"><span class="icon">🎉</span><div><strong>Find events</strong><div class="small">See what's happening nearby</div></div></div><span class="check">✓</span></div><div class="choice" onclick="toggle(this)"><div class="choice-left"><span class="icon">💬</span><div><strong>Practice languages</strong><div class="small">Talk with other speakers</div></div></div><span class="check">✓</span></div><div class="spacer"></div><button class="btn primary" onclick="go(7)">Continue</button></section>
+<section id="s7" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(6)">‹</button><div class="progress"><span style="width:70%"></span></div><h2>What are you interested in?</h2><p class="sub">Pick a few things you'd enjoy sharing with your people.</p><div class="row" style="flex-wrap:wrap;overflow:visible"><button class="pill" onclick="togglePill(this)">🍳 Food</button><button class="pill" onclick="togglePill(this)">⚽ Sport</button><button class="pill" onclick="togglePill(this)">🎵 Music</button><button class="pill" onclick="togglePill(this)">✈️ Travel</button><button class="pill" onclick="togglePill(this)">🎨 Arts</button><button class="pill" onclick="togglePill(this)">💼 Business</button><button class="pill" onclick="togglePill(this)">📚 Books</button><button class="pill" onclick="togglePill(this)">🌱 Outdoors</button></div><div class="spacer"></div><button class="btn primary" onclick="go(8)">Continue</button></section>
+<section id="s8" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(7)">‹</button><div class="progress"><span style="width:84%"></span></div><div class="nn-v25-hero"><div class="nn-v25-kicker">✨ Almost there</div><h2>Your profile</h2><p class="sub">Give your future connections a friendly first impression.</p></div><div class="nn-v25-photo"><div class="avatar avatar-lg" id="signupAvatar">R</div><div class="nn-v25-photo-text"><strong>Add a profile photo</strong><div class="small">People are more likely to connect when they can see you.</div></div><button class="btn secondary" style="margin:0;padding:10px" onclick="openPhotoPicker()">Add</button></div><input id="profileName" class="field" placeholder="Your name"><textarea id="profileIntro" class="field" rows="4" placeholder="A short introduction…"></textarea><div class="nn-v25-card"><strong>💡 Make it personal</strong><div class="small" style="margin-top:6px">Tell people what you enjoy, what languages you speak, or what kind of connection you're hoping to make.</div></div><div class="spacer"></div><button class="btn primary" onclick="saveState();go(9)">Finish Profile</button></section><section id="s9" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><div class="brand">NEAR-NATIVE</div><h1>We found your people!</h1><p class="sub">Discover people, communities and events connected to your country, languages and interests.</p><div class="hero-card"><strong id="matchTitle">🌍 Your community</strong><p id="matchStats" class="sub" style="margin:8px 0 0">People · communities · events</p></div><div class="section-title">Ready to explore?</div><p class="sub">Your exact location stays private. You choose who you connect with.</p><div class="spacer"></div><button class="btn primary" onclick="go(10)">Discover My People</button></section>
+<section id="s10" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><div class="topbar"><div class="brand">NEAR-NATIVE</div><span class="eyebrow">Make a connection</span></div><h1 class="headline">Discover your people</h1><p class="sub">People, communities and places that could feel a little more like home.</p><div class="welcome-card"><strong>🌍 Meet someone who gets it</strong><p class="sub" style="margin:7px 0 0">Connect through language, country, interests and city.</p></div><input id="peopleSearch" class="search" style="margin-top:14px" placeholder="Search people…" oninput="filterPeople()"><div class="row" style="overflow:auto"><button class="pill" onclick="setPeopleFilter('all',this)">All</button><button class="pill" onclick="setPeopleFilter('city',this)">My city</button><button class="pill" onclick="setPeopleFilter('country',this)">My country</button><button class="pill" onclick="setPeopleFilter('language',this)">Language</button><button class="pill" onclick="setPeopleFilter('interest',this)">Interests</button></div><div class="section-title">People for you</div><div class="people-list" id="peopleList"><div class="card"><strong>Finding your people…</strong><p class="sub" style="margin:6px 0 0">Matching city, country, languages and interests.</p></div></div><div class="section-title">Communities</div>
+<div class="community" onclick="go(13)"><div class="icon">🌍</div><div><strong id="discoverCommunity">Your local community</strong><div class="small">Find people who share your background</div></div></div>
+<div class="section-title">Events</div>
+<div class="card"><strong>Community meetup</strong><p class="sub" style="margin:6px 0 0">Discover upcoming events near you.</p><button class="btn secondary" style="margin-top:10px" onclick="go(14)">Explore on Map</button></div><button class="btn secondary" style="margin-top:12px" onclick="go(18)">⚙️ Profile & Settings</button><div class="nav"><button class="active" onclick="go(10)"><span class="navicon">👥</span>People</button><button onclick="go(12)"><span class="navicon">🌍</span>Communities</button><button onclick="go(14)"><span class="navicon">🗺️</span>Map</button><button onclick="go(15)"><span class="navicon">💬</span>Messages</button></div></section>
+<section id="s11" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(10)">‹</button><div class="eyebrow">PEOPLE</div><div class="profile-hero"><div class="avatar avatar-lg" id="otherProfileAvatar">AM</div><div class="profile-name" id="otherProfileName">Amelia M.</div><div class="profile-location" id="otherProfileLocation">🇿🇦 South African · London</div><div class="profile-actions"><button class="btn primary" style="margin:0" onclick="openChat(localStorage.getItem('nearNativePerson')||'Amelia M.')">💬 Connect</button><button class="btn secondary" style="margin:0" onclick="alert('Profile options coming soon.')">••• More</button></div></div><div class="nn-v25-profile-grid"><div class="nn-v25-stat"><b>🗣️ Languages</b><span>English</span></div><div class="nn-v25-stat"><b>❤️ Interests</b><span>Travel · Food</span></div></div><div class="card"><strong>About</strong><p class="sub">Loves travel, food and meeting people from home.</p><div class="tag-row"><span class="tag">✈️ Travel</span><span class="tag">🍳 Food</span><span class="tag">🇿🇦 South Africa</span></div></div><div class="connection-banner">🤝 Shared roots can be the start of a great connection.</div></section><section id="s12" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><div class="brand">COMMUNITIES</div><h1>Find your communities</h1><p class="sub">Groups built around shared countries, languages and interests.</p><input id="communitySearch" class="search" style="margin-top:14px" placeholder="Search communities…" oninput="filterCommunities()"><div class="community community-item" data-community="south africans in london" onclick="go(13)"><div class="icon">🇿🇦</div><div><strong>South Africans in London</strong><div class="small">2,430 members</div></div></div><div class="community community-item" data-community="international newcomers" onclick="go(17)"><div class="icon">🌍</div><div><strong>International Newcomers</strong><div class="small">1,120 members</div></div></div><div class="nav"><button onclick="go(10)"><span class="navicon">👥</span>People</button><button class="active" onclick="go(12)"><span class="navicon">🌍</span>Communities</button><button onclick="go(14)"><span class="navicon">🗺️</span>Map</button><button onclick="go(15)"><span class="navicon">💬</span>Messages</button></div></section>
+<section id="s13" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(12)">‹</button><div class="brand">COMMUNITY</div><h1>South Africans in London</h1><p class="sub">A place to meet, share and stay connected.</p><div class="hero-card"><strong>2,430 members</strong><p class="sub">18 local groups · 6 upcoming events</p></div><button id="joinBtn" class="btn primary" onclick="joinCommunity()">Join Community</button></section>
+<section id="s17" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(12)">‹</button><div class="brand">COMMUNITY</div><h1>International Newcomers</h1><p class="sub">Meet people from around the world who are building a new life abroad.</p><div class="hero-card"><strong>1,120 members</strong><p class="sub">Local groups · events · shared interests</p></div><button class="btn primary" onclick="joinCommunity(this)">Join Community</button></section>
+<section id="s14" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><div class="brand">MAP</div><h1>Discover anywhere</h1><p class="sub">Search for any city in the world and explore Near-Native communities there.</p><input id="mapCitySearch" class="search" placeholder="Search any city worldwide…" autocomplete="off" oninput="filterCities(this.value)" onkeydown="if(event.key==='Enter')searchWorldCity(this.value)"><div id="mapSearchResults" style="display:none"></div><div id="realMap" class="mapbox" aria-label="Interactive world map"></div><div id="cityResults" class="city-results"><strong>Explore a city</strong><p class="sub" style="margin:5px 0 0">Search for a city above to explore it.</p></div><p class="sub">Approximate city areas only — never your exact address.</p><div class="nav"><button onclick="go(10)"><span class="navicon">👥</span>People</button><button onclick="go(12)"><span class="navicon">🌍</span>Communities</button><button class="active" onclick="go(14)"><span class="navicon">🗺️</span>Map</button><button onclick="go(15)"><span class="navicon">💬</span>Messages</button></div></section>
+<section id="s15" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><div class="brand">MESSAGES</div><h1>Messages</h1><p class="sub">Your conversations will appear here.</p><p id="messageSyncStatus" class="small" style="margin-top:6px">Latest messages are saved on this device.</p><div class="card" onclick="openChat('Amelia M.')" style="cursor:pointer"><strong>Amelia M.</strong><p id="ameliaPreview" class="sub" style="margin:6px 0 0">Hi! Great to connect 👋</p></div><div class="card" onclick="openChat('Thabo K.')" style="cursor:pointer"><strong>Thabo K.</strong><p id="thaboPreview" class="sub" style="margin:6px 0 0">Start a conversation</p></div><div class="nav"><button onclick="go(10)"><span class="navicon">👥</span>People</button><button onclick="go(12)"><span class="navicon">🌍</span>Communities</button><button onclick="go(14)"><span class="navicon">🗺️</span>Map</button><button class="active" onclick="go(15)"><span class="navicon">💬</span>Messages</button></div></section>
+<section id="s16" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(15)">‹</button><div class="brand">CHAT</div><h1 id="chatPersonName">Person</h1><div class="card" style="margin-top:24px"><strong>Connection accepted</strong><p class="sub">You can now start a conversation.</p></div><div id="chatMessages"><div id="sentMessage" class="card" style="display:none"></div></div><input id="messageInput" class="field" placeholder="Write a message…"><button class="btn primary" onclick="sendMessage()">Send Message</button></section>
+<section id="s18" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(10)">‹</button><div class="topbar"><div><div class="eyebrow">Your identity</div><div class="brand">PROFILE</div></div><span style="font-size:22px">✨</span></div><h1>Edit your profile</h1><p class="sub">Keep your profile fresh so the right people can find you.</p><div class="profile-hero"><div class="avatar avatar-lg" id="profileAvatar" style="margin:0 auto" onclick="openPhotoPicker()">R<div class="avatar-edit">📷</div></div><div class="profile-name" id="profilePreviewName">Your name</div><div class="profile-location" id="profilePreviewCity">Your city</div><button class="link" onclick="openPhotoPicker()">📷 Add or change profile photo</button></div><input id="editProfileName" class="field" placeholder="Your name"><input id="editProfileCity" class="field" placeholder="Current city"><textarea id="editProfileIntro" class="field" rows="4" placeholder="About you…"></textarea><div class="nn-v25-card"><strong>🗣️ Your languages</strong><div class="small" style="margin-top:5px">Update these from your registration choices if you want to change how people find you.</div></div><div class="connection-banner">💬 A clear photo, city and short intro make it easier for people to start a genuine conversation.</div><button class="btn primary" onclick="saveEditedProfile()">Save Profile</button><button class="btn secondary" onclick="go(19)">Privacy & Safety</button><button class="btn secondary" onclick="go(20)">Settings</button></section><section id="s19" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(18)">‹</button><div class="brand">SAFETY</div><h1>Privacy & Safety</h1><p class="sub">Your safety comes first.</p><div class="card"><strong>Block & report</strong><p class="sub">Open a person's profile to block or report them.</p><button class="btn secondary" onclick="alert('Choose a person from Discover to block or report them.')">How it works</button></div><div class="card"><strong>Location privacy</strong><p class="sub">Near-Native uses approximate city areas. Your exact address and live location are not shown.</p></div><button class="btn secondary" onclick="go(20)">Settings</button></section>
+<section id="s20" class="screen"><div class="nn-onboarding-accent" aria-hidden="true"></div><button class="back" onclick="go(18)">‹</button><div class="brand">SETTINGS</div><h1>Settings</h1><div class="card"><strong>Notifications</strong><p class="sub">Connection requests and new message alerts.</p><button class="btn secondary" onclick="toggleSetting('notifications',this)">Notifications: On</button></div><div class="card"><strong>Account</strong><p class="sub">Manage your Near-Native account.</p><button class="btn secondary" onclick="alert('Log out is ready for the connected account.')">Log Out</button><button class="btn secondary" onclick="alert('Account deletion can be connected to Supabase before launch.')">Delete Account</button></div><div class="card"><strong>Help</strong><p class="sub">Need help? Contact Near-Native support.</p></div></section>
+</main><script>
+const SUPABASE_URL='https://vcksjvdjdebchxfiumho.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_5B_uVDN-QTlE2TuRSmS8pA_ZCwr31bG';
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+const state=JSON.parse(localStorage.getItem('nearNativeProfile')||'{}');
+let country=state.country||'South Africa',city=state.city||'London';
+const cities=['London','Johannesburg','Cape Town','Lisbon','New York','São Paulo','Dubai','Sydney'];
+function setAuthStatus(message,isError=false){
+  const box=document.getElementById('authStatus');
+  if(!box)return;
+  box.textContent=message;
+  box.style.display='block';
+  box.style.background=isError?'#fff0ef':'#eef1fb';
+  box.style.color=isError?'#8b2e25':'#3f4d73';
+}
+function showLogin(){
+  go(2);
+  const h=document.querySelector('#s2 h1'); if(h)h.textContent='Welcome back';
+  const sub=document.querySelector('#s2 .sub'); if(sub)sub.textContent='Sign in to continue to Near-Native.';
+  const btn=document.getElementById('signupBtn'); if(btn){btn.textContent='Sign In';btn.onclick=signIn;}
+  setAuthStatus('');
+}
+async function signIn(){
+  const email=document.getElementById('signupEmail').value.trim();
+  const password=document.getElementById('signupPassword').value;
+  const btn=document.getElementById('signupBtn');
+  if(!email||!password){setAuthStatus('Enter your email and password.',true);return}
+  btn.disabled=true; btn.textContent='Signing in…';
+  try{
+    const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
+    if(error) throw error;
+    localStorage.setItem('nearNativeAuth','true');
+    localStorage.setItem('nearNativeEmail',email);
+    // V2.6: load this user's Supabase profile before onboarding so one account
+    // can never inherit another account's local country/city/profile data.
+    if(data?.user && typeof window.nnHydrateProfile==='function') await window.nnHydrateProfile(data.user);
+    if(data?.user && typeof window.nnEnsureProfileForCurrentUser==='function') await window.nnEnsureProfileForCurrentUser(data.user);
+    setAuthStatus('Signed in successfully.');
+    setTimeout(()=>go(3),500);
+  }catch(err){
+    setAuthStatus(err.message||'We could not sign you in.',true);
+    btn.disabled=false; btn.textContent='Sign In';
+  }
+}
+async function createAccount(){
+  const name=document.getElementById('signupName').value.trim();
+  const email=document.getElementById('signupEmail').value.trim();
+  const password=document.getElementById('signupPassword').value;
+  const btn=document.getElementById('signupBtn');
+  if(!name||!email||!password){setAuthStatus('Please enter your name, email and password.',true);return}
+  if(password.length<6){setAuthStatus('Your password must be at least 6 characters.',true);return}
+  btn.disabled=true; btn.textContent='Creating account…';
+  try{
+    const {data,error}=await supabaseClient.auth.signUp({
+      email,password,
+      options:{data:{first_name:name}}
+    });
+    if(error) throw error;
+
+    // V2.6: a new account starts with a completely clean local profile.
+    // Never carry the previous user's country/city/name into this account.
+    localStorage.removeItem('nearNativeMapCity');
+    localStorage.removeItem('nearNativePerson');
+    localStorage.removeItem('nearNativeChatPerson');
+    Object.keys(localStorage).filter(k=>k.startsWith('nearNativeMessage_')).forEach(k=>localStorage.removeItem(k));
+    country=''; city='';
+    Object.keys(state).forEach(k=>delete state[k]);
+    state.name=name;
+    const freshProfile={country:'',city:'',name,intro:'',languages:[],interests:[]};
+    localStorage.setItem('nearNativeEmail',email);
+    localStorage.setItem('nearNativeProfile',JSON.stringify(freshProfile));
+
+    if(data.session && data.user){
+      localStorage.setItem('nearNativeAuth','true');
+      // Create the profile row immediately when Supabase gives us a session.
+      // The onboarding fields will update this same row as the user proceeds.
+      if(typeof window.nnEnsureProfileForCurrentUser==='function') await window.nnEnsureProfileForCurrentUser(data.user,{first_name:name});
+      setAuthStatus('Account created. Your Near-Native profile is ready.');
+      setTimeout(()=>go(3),500);
+    }else{
+      setAuthStatus('Account created. Check your email to confirm your account, then sign in to continue.');
+      setTimeout(()=>showLogin(),1200);
+    }
+  }catch(err){
+    setAuthStatus(err.message||'We could not create the account. Please try again.',true);
+    btn.disabled=false; btn.textContent='Create Account';
+  }
+}
+
+function saveState(){const profile={country,city,name:document.getElementById('profileName')?.value||state.name||'',intro:document.getElementById('profileIntro')?.value||state.intro||'',languages:[...document.querySelectorAll('#languages .choice.selected')].map(x=>x.innerText.split('✓')[0].trim()),interests:[...document.querySelectorAll('#s7 .pill.selected')].map(x=>x.innerText.trim())};localStorage.setItem('nearNativeProfile',JSON.stringify(profile));Object.assign(state,profile);return profile}
+function go(n){
+  if(n===9) saveState();
+  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  window.scrollTo(0,0);
+  if(n===9||n===10){restoreState();updatePersonalisedUI();} if(n===15){setTimeout(updateMessagePreviews,0);} if(n===16){const person=getChatPerson();const h=document.getElementById('chatPersonName');if(h)h.textContent=person;restoreMessage();}
+  if(n===13||n===17)restoreCommunityButtons(); if(n===14) initNativeMap(); if(n===18){const p=JSON.parse(localStorage.getItem('nearNativeProfile')||'{}');document.getElementById('editProfileName').value=p.name||'';document.getElementById('editProfileCity').value=p.city||city;document.getElementById('editProfileIntro').value=p.intro||''}
+}
+function filterLanguages(v){const q=String(v||'').toLowerCase().trim();document.querySelectorAll('#languages .choice').forEach(x=>x.style.display=(!q||x.dataset.language.includes(q))?'flex':'none')}
+function filterCountries(v){const q=v.toLowerCase();document.querySelectorAll('#countries .country').forEach(x=>x.style.display=x.innerText.toLowerCase().includes(q)?'flex':'none')}
+function selectCountry(el,name){document.querySelectorAll('#countries .country').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');country=name;saveState()}
+function setCity(name){city=String(name||'').trim();localStorage.removeItem('nearNativeMapCity');saveState();updatePersonalisedUI()}
+function selectCity(el,name){document.querySelectorAll('#onboardingCities .city-option').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');city=name;saveState();const b=document.getElementById('cityContinueBtn');if(b)b.disabled=false}
+function filterOnboardingCities(v){const q=v.toLowerCase().trim();document.querySelectorAll('#onboardingCities .city-option').forEach(x=>{x.style.display=!q||x.innerText.toLowerCase().includes(q)?'flex':'none'})}
+function continueFromCity(){if(!city){return}saveState();go(5)}
+// Location handler defined once below.
+function toggle(el){el.classList.toggle('selected');saveState()}
+function togglePill(el){el.classList.toggle('selected');saveState()}
+function joinCommunity(btn){
+  const screen=document.querySelector('.screen.active');
+  const title=screen?.querySelector('h1')?.textContent||'South Africans in London';
+  const key='nearNativeJoined_'+title.toLowerCase().replace(/[^a-z0-9]+/g,'_');
+  const b=btn||screen?.querySelector('.btn.primary')||document.getElementById('joinBtn');
+  localStorage.setItem(key,'true');
+  if(b){b.textContent='Joined ✓';b.disabled=true;b.style.opacity='.75'}
+}
+function restoreCommunityButtons(){
+  document.querySelectorAll('#s13 .btn.primary,#s17 .btn.primary').forEach(b=>{
+    const title=b.closest('.screen')?.querySelector('h1')?.textContent||'';
+    const key='nearNativeJoined_'+title.toLowerCase().replace(/[^a-z0-9]+/g,'_');
+    const joined=localStorage.getItem(key)==='true';
+    if(joined){b.textContent='Joined ✓';b.disabled=true;b.style.opacity='.75'}
+  });
+}
+const mapCities=[
+  {name:'London',lat:51.5074,lng:-0.1278,detail:'🇿🇦 South Africans in London · 2,430 members'},
+  {name:'Johannesburg',lat:-26.2041,lng:28.0473,detail:'🇿🇦 South Africans nearby · 860 people'},
+  {name:'Cape Town',lat:-33.9249,lng:18.4241,detail:'🇿🇦 Cape Town community · 1,120 people'},
+  {name:'Lisbon',lat:38.7223,lng:-9.1393,detail:'🇵🇹 Portuguese speakers · 740 people'},
+  {name:'New York',lat:40.7128,lng:-74.0060,detail:'🌎 International newcomers · 3,200 people'},
+  {name:'São Paulo',lat:-23.5505,lng:-46.6333,detail:'🇧🇷 Portuguese speakers · 2,100 people'},
+  {name:'Dubai',lat:25.2048,lng:55.2708,detail:'🌍 International communities · 1,900 people'},
+  {name:'Sydney',lat:-33.8688,lng:151.2093,detail:'🌏 Global communities · 1,450 people'}
+];
+let nativeMap=null, mapMarkers=[], worldSearchTimer=null, worldSearchController=null;
+function cityIcon(selected=false){return L.divIcon({className:'',html:'<div class="city-marker'+(selected?' selected':'')+'"></div>',iconSize:selected?[22,22]:[18,18],iconAnchor:selected?(11,11):(9,9)})}
+function addMapCity(c,zoomTo=false){
+  if(!nativeMap)return;
+  mapMarkers.filter(x=>x.world).forEach(({marker})=>{if(nativeMap.hasLayer(marker))nativeMap.removeLayer(marker)});
+  mapMarkers=mapMarkers.filter(x=>!x.world);
+  const marker=L.marker([c.lat,c.lng],{icon:cityIcon(true),title:c.name}).addTo(nativeMap);
+  marker.bindPopup('<strong>'+escapeHtml(c.name)+'</strong><br>'+escapeHtml(c.detail||'Explore this city on Near-Native.'));
+  marker.on('click',()=>showCity(c.name,c.detail||'Explore this city on Near-Native.',true,c));
+  mapMarkers.push({data:c,marker,world:true});
+  if(zoomTo){nativeMap.flyTo([c.lat,c.lng],8,{duration:.7});setTimeout(()=>marker.openPopup(),650)}
+  return marker;
+}
+function escapeHtml(v){return String(v).replace(/[&<>\"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\\"':'&quot;',"'":'&#39;'}[m]||m))}
+function initNativeMap(){
+  if(nativeMap){setTimeout(()=>nativeMap.invalidateSize(),100);return}
+  const el=document.getElementById('realMap'); if(!el||typeof L==='undefined')return;
+  nativeMap=L.map(el,{worldCopyJump:true,zoomControl:true}).setView([20,10],2);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}).addTo(nativeMap);
+  // Keep the map clean on first load. Cities are shown only after the user searches for one.
+  mapMarkers=[];
+  setTimeout(()=>nativeMap.invalidateSize(),150);
+}
+const demoCityPeople={};
+let selectedMapCity='';
+function showCity(name,detail,fromMap,coords){
+  const c=coords||mapCities.find(x=>x.name.toLowerCase()===String(name).toLowerCase());
+  selectedMapCity=String(name||'').trim();
+  localStorage.setItem('nearNativeMapCity',selectedMapCity);
+  const safeName=escapeHtml(name), safeDetail=escapeHtml(detail||'Explore this city on Near-Native.');
+  const people=demoCityPeople[String(name||'').toLowerCase()]||[];
+  let peopleHtml='<div class="section-title" style="margin-top:14px">Near-Native people</div>';
+  if(people.length){peopleHtml+=people.map(p=>'<div class="person" style="margin-top:8px"><div class="avatar">'+escapeHtml(p.avatar)+'</div><div><strong>'+escapeHtml(p.name)+'</strong><div class="small">'+escapeHtml(p.meta)+'</div></div></div>').join('');}
+  else {peopleHtml+='<p class="sub" style="margin:6px 0 0">No local demo profiles are connected to this city yet.</p>'}
+  document.getElementById('cityResults').innerHTML='<strong>'+safeName+'</strong><p class="sub" style="margin:5px 0 0">'+safeDetail+'</p>'+peopleHtml+'<button class="btn primary" style="margin-top:12px" onclick="openCityPeople()">See People</button><button class="btn secondary" style="margin-top:8px" onclick="go(12)">Explore Communities</button>';
+  if(nativeMap&&c){nativeMap.flyTo([c.lat,c.lng],c===coords?8:5,{duration:.6});}
+}
+function openCityPeople(){
+  const target=selectedMapCity||city;
+  localStorage.setItem('nearNativeMapCity',target);
+  go(10);
+}
+function renderWorldResults(items){
+  const box=document.getElementById('mapSearchResults'); if(!box)return;
+  if(!items.length){box.style.display='none';box.innerHTML='';return}
+  box.innerHTML=items.slice(0,6).map((x,i)=>'<button type="button" class="card" style="width:100%;text-align:left;cursor:pointer;margin-top:7px" onclick="selectWorldResult('+i+')"><strong>'+escapeHtml(x.name)+'</strong><div class="small">'+escapeHtml(x.label||'')+'</div></button>').join('');
+  box.style.display='block';
+  window._worldResults=items.slice(0,6);
+}
+function selectWorldResult(i){
+  const x=(window._worldResults||[])[i]; if(!x)return;
+  const c={name:x.name,lat:Number(x.lat),lng:Number(x.lng),detail:'🌍 '+(x.label||'Worldwide city search result')};
+  document.getElementById('mapSearchResults').style.display='none';
+  document.getElementById('mapCitySearch').value=x.name;
+  addMapCity(c,true);
+  showCity(c.name,c.detail,true,c);
+}
+async function searchWorldCity(v){
+  const q=String(v||'').trim(); if(q.length<2)return;
+  if(worldSearchController)worldSearchController.abort();
+  worldSearchController=new AbortController();
+  try{
+    const url='https://photon.komoot.io/api/?q='+encodeURIComponent(q)+'&limit=6';
+    const r=await fetch(url,{signal:worldSearchController.signal,headers:{'Accept':'application/json'}});
+    if(!r.ok)throw new Error('Search unavailable');
+    const data=await r.json();
+    const items=(data.features||[]).map(f=>{
+      const p=f.properties||{}, g=f.geometry||{};
+      const parts=[p.city||p.name,p.state,p.country].filter(Boolean);
+      return {name:p.city||p.name||'Unknown city',label:parts.filter((v,i,a)=>a.indexOf(v)===i).join(', '),lat:g.coordinates?.[1],lng:g.coordinates?.[0]};
+    }).filter(x=>Number.isFinite(x.lat)&&Number.isFinite(x.lng));
+    renderWorldResults(items);
+    if(items.length===1)selectWorldResult(0);
+  }catch(e){if(e.name!=='AbortError'){const box=document.getElementById('cityResults');if(box)box.innerHTML='<strong>City search unavailable</strong><p class="sub" style="margin:5px 0 0">Please try again in a moment.</p>'}}
+}
+function filterCities(v){
+  const q=String(v||'').trim();
+  if(!nativeMap)return;
+  const box=document.getElementById('mapSearchResults');
+  if(!q){
+    if(box){box.style.display='none';box.innerHTML='';}
+    return;
+  }
+  clearTimeout(worldSearchTimer);
+  if(q.length>=2)worldSearchTimer=setTimeout(()=>searchWorldCity(v),350);
+}
+function getChatPerson(){return localStorage.getItem('nearNativeChatPerson')||localStorage.getItem('nearNativePerson')||'Amelia M.'}
+function openChat(name){
+  const person=String(name||'Amelia M.').trim();
+  localStorage.setItem('nearNativeChatPerson',person);
+  localStorage.setItem('nearNativePerson',person);
+  const h=document.getElementById('chatPersonName'); if(h)h.textContent=person;
+  const input=document.getElementById('messageInput'); if(input)input.value='';
+  restoreMessage();
+  go(16);
+}
+function chatMessageKey(){return 'nearNativeMessage_'+getChatPerson().toLowerCase().replace(/[^a-z0-9]+/g,'_')}
+function sendMessage(){
+  const input=document.getElementById('messageInput'); const msg=input.value.trim(); if(!msg)return;
+  const person=getChatPerson();
+  const key=chatMessageKey();
+  const box=document.getElementById('sentMessage'); if(box){box.textContent=msg;box.style.display='block'}
+  localStorage.setItem(key,msg);
+  localStorage.setItem(key+'_time',String(Date.now()));
+  input.value='';
+  updateMessagePreviews();
+}
+function getLastMessage(name){
+  const key='nearNativeMessage_'+String(name||'').toLowerCase().replace(/[^a-z0-9]+/g,'_');
+  return localStorage.getItem(key)||'';
+}
+function restoreMessage(){
+  const box=document.getElementById('sentMessage'); if(!box)return;
+  const msg=localStorage.getItem(chatMessageKey());
+  box.textContent=msg||''; box.style.display=msg?'block':'none';
+}
+function updateMessagePreviews(){
+  const a=getLastMessage('Amelia M.'); const t=getLastMessage('Thabo K.');
+  const ap=document.getElementById('ameliaPreview'); if(ap)ap.textContent=a||'Hi! Great to connect 👋';
+  const tp=document.getElementById('thaboPreview'); if(tp)tp.textContent=t||'Start a conversation';
+}
+function updatePersonalisedUI(){
+  const saved=JSON.parse(localStorage.getItem('nearNativeProfile')||'{}');
+  if(saved.country)country=saved.country;
+  if(saved.city)city=saved.city;
+  Object.assign(state,saved);
+  const name=saved.name||document.getElementById('profileName')?.value||'';
+  const mapCity=localStorage.getItem('nearNativeMapCity')||'';
+  const activeCity=mapCity||city;
+  const safeCountry=String(country||'').trim();
+  const safeCity=String(city||'').trim();
+  const community=(safeCountry&&safeCity)?((safeCountry==='South Africa'?'South Africans': 'People from '+safeCountry)+' in '+safeCity):'Your local community';
+  const title=document.getElementById('matchTitle'); if(title) title.textContent='🌍 '+community;
+  const stats=document.getElementById('matchStats'); if(stats) stats.textContent='People · communities · events near you';
+  const dc=document.getElementById('discoverCommunity'); if(dc) dc.textContent=community;
+  const h=document.querySelector('#s10 h1'); if(h && name) h.textContent=activeCity&&mapCity?'People in '+activeCity:'Discover, '+name;
+  const sub=document.querySelector('#s10 > .sub'); if(sub) sub.textContent=mapCity?'People and communities discovered in '+activeCity+'.':'People, communities and events around you.';
+  const joined=localStorage.getItem('nearNativeJoined')==='true';
+  const b=document.getElementById('joinBtn'); if(b&&joined){b.textContent='Joined ✓';b.disabled=true;b.style.opacity='.75'}
+}
+let onboardingSearchTimer=null,onboardingSearchController=null,peopleFilter='all';
+function renderOnboardingCities(items){const box=document.getElementById('onboardingCities');if(!box)return;if(!items.length){box.innerHTML='<p class="sub" style="margin-top:14px">No city found. Try another spelling.</p>';return}box.innerHTML=items.slice(0,8).map((x,i)=>'<div class="country city-option" data-city="'+escapeHtml(x.name)+'" onclick="selectRemoteCity('+i+')"><span class="flag">📍</span><div><strong>'+escapeHtml(x.name)+'</strong><div class="small">'+escapeHtml(x.label||'Worldwide')+'</div></div></div>').join('');window._onboardingResults=items.slice(0,8)}
+function selectRemoteCity(i){const x=(window._onboardingResults||[])[i];if(!x)return;city=String(x.name||'').trim();localStorage.removeItem('nearNativeMapCity');document.querySelectorAll('#onboardingCities .city-option').forEach(el=>el.classList.remove('selected'));const el=[...document.querySelectorAll('#onboardingCities .city-option')][i];if(el)el.classList.add('selected');saveState();updatePersonalisedUI();const st=document.getElementById('onboardingCityStatus');if(st)st.textContent='Selected: '+x.name+(x.label?' · '+x.label:'');const b=document.getElementById('cityContinueBtn');if(b)b.disabled=false}
+async function searchOnboardingCity(v,immediate=false){const q=String(v||'').trim();if(q.length<2){const st=document.getElementById('onboardingCityStatus');if(st)st.textContent='Type at least 2 letters to search worldwide.';return}if(!immediate){clearTimeout(onboardingSearchTimer);onboardingSearchTimer=setTimeout(()=>searchOnboardingCity(v,true),350);return}if(onboardingSearchController)onboardingSearchController.abort();onboardingSearchController=new AbortController();const st=document.getElementById('onboardingCityStatus');if(st)st.textContent='Searching worldwide…';try{const r=await fetch('https://photon.komoot.io/api/?q='+encodeURIComponent(q)+'&limit=8',{signal:onboardingSearchController.signal});if(!r.ok)throw new Error();const d=await r.json();const items=(d.features||[]).map(f=>{const p=f.properties||{},g=f.geometry||{};const name=p.city||p.name||p.town||p.village;const label=[p.state,p.country].filter(Boolean).join(', ');return{name,label,lat:g.coordinates?.[1],lng:g.coordinates?.[0]}}).filter(x=>x.name&&Number.isFinite(x.lat)&&Number.isFinite(x.lng));renderOnboardingCities(items);if(st)st.textContent=items.length?'Select your city below.':'No city found. Try another spelling.'}catch(e){if(e.name!=='AbortError'&&st)st.textContent='City search unavailable. Please try again.'}}
+function openPerson(name){localStorage.setItem('nearNativePerson',name);const h=document.querySelector('#s11 h1');if(h)h.textContent=name;const sub=document.querySelector('#s11 > .sub');if(sub)sub.textContent=name==='Amelia M.'?'South African · London':'South African · London';const av=document.querySelector('#s11 .avatar');if(av)av.textContent=name==='Amelia M.'?'AM':'TK';go(11)}
+function filterPeople(){const q=(document.getElementById('peopleSearch')?.value||'').toLowerCase();document.querySelectorAll('.discover-person').forEach(x=>x.style.display=(!q||x.dataset.name.includes(q)||x.dataset.city.includes(q)||x.dataset.country.includes(q)||x.dataset.language.includes(q)||x.dataset.interest.includes(q))?'flex':'none')}
+function setPeopleFilter(f,el){peopleFilter=f;document.querySelectorAll('#s10 .row .pill').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');const c=city.toLowerCase();document.querySelectorAll('.discover-person').forEach(x=>{let ok=f==='all'||(f==='city'&&x.dataset.city===c)||(f==='country'&&x.dataset.country===country.toLowerCase())||(f==='language'&&x.dataset.language.includes((state.languages||[])[0]?.toLowerCase()||'english'))||(f==='interest'&&x.dataset.interest);x.style.display=ok?'flex':'none'})}
+function filterCommunities(){const q=(document.getElementById('communitySearch')?.value||'').toLowerCase();document.querySelectorAll('.community-item').forEach(x=>x.style.display=(!q||x.dataset.community.includes(q))?'flex':'none')}
+function saveEditedProfile(){const p=JSON.parse(localStorage.getItem('nearNativeProfile')||'{}');p.name=document.getElementById('editProfileName')?.value||p.name||'';p.city=(document.getElementById('editProfileCity')?.value||p.city||city).trim();p.intro=document.getElementById('editProfileIntro')?.value||p.intro||'';localStorage.setItem('nearNativeProfile',JSON.stringify(p));Object.assign(state,p);city=p.city;localStorage.removeItem('nearNativeMapCity');updatePersonalisedUI();alert('Profile saved ✓');go(10)}
+function toggleSetting(key,btn){const on=localStorage.getItem('nn_'+key)!=='off';localStorage.setItem('nn_'+key,on?'off':'on');btn.textContent='Notifications: '+(on?'Off':'On')}
+function restoreCitySelection(){const b=document.getElementById('cityContinueBtn');if(b)b.disabled=!city;const st=document.getElementById('onboardingCityStatus');if(st&&city)st.textContent='Current city: '+city}
+function logout(){
+  localStorage.removeItem('nearNativeAuth');
+  localStorage.removeItem('nearNativeEmail');
+  localStorage.removeItem('nearNativeProfile');
+  localStorage.removeItem('nearNativeMapCity');
+  localStorage.removeItem('nearNativePerson');
+  localStorage.removeItem('nearNativeChatPerson');
+  Object.keys(localStorage).filter(k=>k.startsWith('nearNativeMessage_')).forEach(k=>localStorage.removeItem(k));
+  location.reload();
+}
+function restoreState(){
+  const p=JSON.parse(localStorage.getItem('nearNativeProfile')||'{}');
+  Object.assign(state,p);
+  if(p.country){country=p.country;document.querySelectorAll('#countries .country').forEach(x=>{x.classList.toggle('selected',x.innerText.includes(p.country))})}
+  if(p.city)city=p.city;
+  if(document.getElementById('profileName'))document.getElementById('profileName').value=p.name||'';
+  if(document.getElementById('profileIntro'))document.getElementById('profileIntro').value=p.intro||'';
+  restoreMessage(); restoreCitySelection(); updatePersonalisedUI();
+}
+restoreState();
+
+
+
+/* ===== Near-Native V2.4.1: profile photos + connection UI ===== */
+let nnPhotoData=null;
+function nnInitials(name){return String(name||'R').trim().split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()||'R'}
+function nnProfilePhoto(){return (nnGetProfile()||{}).photo||localStorage.getItem('nearNativeProfilePhoto')||''}
+function nnSetAvatar(el,photo,name){if(!el)return;const initials=nnInitials(name);el.innerHTML=photo?'<img src="'+photo+'" alt="Profile photo">': '<span class="avatar-initials">'+initials+'</span>'+ (el.id==='profileAvatar'?'<div class="avatar-edit">📷</div>':'')}
+function openPhotoPicker(){const m=document.getElementById('photoModal');if(!m)return;m.classList.add('open');nnPhotoData=nnProfilePhoto()||null;const img=document.getElementById('photoPreview');const init=document.getElementById('photoPreviewInitial');if(nnPhotoData){img.innerHTML='<img src="'+nnPhotoData+'" alt="Preview">'}else{img.innerHTML='<span id="photoPreviewInitial">'+nnInitials(document.getElementById('editProfileName')?.value||nnGetProfile()?.name||state.name||'R')+'</span>'}}
+function closePhotoPicker(){document.getElementById('photoModal')?.classList.remove('open')}
+function handleProfilePhoto(input){const file=input.files&&input.files[0];if(!file)return;if(!file.type.startsWith('image/')){alert('Please choose an image.');return}const reader=new FileReader();reader.onload=function(e){const im=new Image();im.onload=function(){const size=Math.min(im.width,im.height),sx=(im.width-size)/2,sy=(im.height-size)/2;const c=document.createElement('canvas');c.width=700;c.height=700;const ctx=c.getContext('2d');ctx.drawImage(im,sx,sy,size,size,0,0,700,700);nnPhotoData=c.toDataURL('image/jpeg',.84);const prev=document.getElementById('photoPreview');if(prev)prev.innerHTML='<img src="'+nnPhotoData+'" alt="Preview">'};im.src=e.target.result};reader.readAsDataURL(file)}
+function saveProfilePhoto(){if(!nnPhotoData){closePhotoPicker();return}const p=nnGetProfile()||{};p.photo=nnPhotoData;nnSaveProfile(p);localStorage.setItem('nearNativeProfilePhoto',nnPhotoData);nnRefreshProfileUI();closePhotoPicker()}
+function nnRefreshProfileUI(){const p=nnGetProfile()||{};const photo=p.photo||localStorage.getItem('nearNativeProfilePhoto')||'';const name=p.name||state.name||'R';nnSetAvatar(document.getElementById('profileAvatar'),photo,name);nnSetAvatar(document.getElementById('signupAvatar'),photo,name);const n=document.getElementById('profilePreviewName');if(n)n.textContent=name||'Your name';const c=document.getElementById('profilePreviewCity');if(c)c.textContent=p.city||city||'Your city';}
+const _nnOldSaveEditedProfile=window.saveEditedProfile;
+window.saveEditedProfile=function(){if(typeof _nnOldSaveEditedProfile==='function')_nnOldSaveEditedProfile.apply(this,arguments);const p=nnGetProfile()||{};p.name=document.getElementById('editProfileName')?.value||p.name||'';p.city=document.getElementById('editProfileCity')?.value||p.city||city||'';p.intro=document.getElementById('editProfileIntro')?.value||p.intro||'';if(nnPhotoData)p.photo=nnPhotoData;nnSaveProfile(p);nnRefreshProfileUI()};
+const _nnOldOpenPerson=window.openPerson;
+window.openPerson=function(name){if(typeof _nnOldOpenPerson==='function')_nnOldOpenPerson.apply(this,arguments);const demo=(NN_DEMO_USERS||[]).find(x=>x.name===name);const av=document.getElementById('otherProfileAvatar');if(av)nnSetAvatar(av,demo?.photo||'',name);const nm=document.getElementById('otherProfileName');if(nm)nm.textContent=name;const loc=document.getElementById('otherProfileLocation');if(loc&&demo)loc.textContent='🇿🇦 '+demo.country+' · '+demo.city};
+window.addEventListener('load',()=>setTimeout(nnRefreshProfileUI,80));
+
+/* V2.2 enhancement hooks */
+(function(){
+ const oldGo=window.go;
+ window.go=function(n){ const r=oldGo.apply(this,arguments); if(n===10) setTimeout(nnRenderPeople,80); return r; };
+ const oldSave=window.saveEditedProfile;
+ if(typeof oldSave==='function'){
+   window.saveEditedProfile=function(){ const r=oldSave.apply(this,arguments); const p=nnGetProfile(); if(p&&p.city)nnSyncCityEverywhere(p.city); return r; };
+ }
+ window.addEventListener('load',function(){setTimeout(function(){const p=nnGetProfile(); if(p&&p.city)nnSyncCityEverywhere(p.city);},100)});
+})();
+
+/* ===== Near-Native V2.2: profile + discovery data layer ===== */
+const NN_PROFILE_KEY='nearNativeProfile';
+const NN_DEMO_USERS=[
+ {name:'Amelia M.',country:'South Africa',city:'London',languages:['English'],interests:['Travel'],intro:'South African living in London.',avatar:'AM'},
+ {name:'Thabo K.',country:'South Africa',city:'London',languages:['English'],interests:['Sport'],intro:'South African in London who loves sport.',avatar:'TK'},
+ {name:'Lerato P.',country:'South Africa',city:'Cape Town',languages:['English','Sesotho'],interests:['Music'],intro:'Cape Town based and always looking for good people.',avatar:'LP'},
+ {name:'João R.',country:'Portugal',city:'Lisbon',languages:['Portuguese','English'],interests:['Food'],intro:'Portuguese speaker exploring Lisbon.',avatar:'JR'}
+];
+function nnGetProfile(){try{return JSON.parse(localStorage.getItem(NN_PROFILE_KEY)||'null')}catch(e){return null}}
+function nnSaveProfile(p){localStorage.setItem(NN_PROFILE_KEY,JSON.stringify(p||{})); if(p&&p.city)localStorage.setItem('city',p.city); if(typeof updatePersonalisedUI==='function')updatePersonalisedUI()}
+function nnNorm(v){return String(v||'').trim().toLowerCase()}
+function nnMatches(p,filters){
+ const city=nnNorm(filters.city), country=nnNorm(filters.country), lang=nnNorm(filters.language), interest=nnNorm(filters.interest);
+ return (!city||nnNorm(p.city)===city) && (!country||nnNorm(p.country)===country) && (!lang||((p.languages||[]).some(x=>nnNorm(x)===lang))) && (!interest||((p.interests||[]).some(x=>nnNorm(x)===interest)));
+}
+function nnScorePerson(p,me){
+ let score=0;
+ const myCity=nnNorm(me.city), myCountry=nnNorm(me.country);
+ const myLanguages=(me.languages||[]).map(nnNorm).filter(Boolean);
+ const myInterests=(me.interests||[]).map(nnNorm).filter(Boolean);
+ if(myCity && nnNorm(p.city)===myCity) score+=50;
+ if(myCountry && nnNorm(p.country)===myCountry) score+=25;
+ score+=(p.languages||[]).map(nnNorm).filter(x=>myLanguages.includes(x)).length*15;
+ score+=(p.interests||[]).map(nnNorm).filter(x=>myInterests.includes(x)).length*8;
+ return score;
+}
+function nnDiscoverPeople(){
+ const me=nnGetProfile()||{};
+ return NN_DEMO_USERS.filter(u=>u.name!==me.name).map(u=>({user:u,score:nnScorePerson(u,me)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).map(x=>x.user);
+}
+function nnRenderPeople(){
+ const host=document.querySelector('#peopleList');
+ if(!host)return;
+ const me=nnGetProfile()||{};
+ const people=nnDiscoverPeople();
+ if(!people.length){
+   host.innerHTML='<div class="card nn-empty"><div style="font-size:28px">🌍</div><strong>We\'re still finding your people</strong><p class="sub" style="margin:6px 0 0">There are no matching people in the demo network yet. As Near-Native grows, this space will fill with people who share your city, country, languages or interests.</p></div>';
+   return;
+ }
+ host.innerHTML=people.map(p=>{
+   const langs=(p.languages||[]).join(' · '), interests=(p.interests||[]).join(' · ');
+   const initials=escapeHtml(p.avatar||nnInitials(p.name));
+   const name=escapeHtml(p.name), cityVal=nnNorm(p.city), countryVal=nnNorm(p.country), langVal=nnNorm(langs), interestVal=nnNorm(interests);   return '<div class="person discover-person" data-name="'+name.toLowerCase()+'" data-city="'+cityVal+'" data-country="'+countryVal+'" data-language="'+langVal+'" data-interest="'+interestVal+'" onclick="openPerson('+JSON.stringify(p.name)+')"><div class="avatar"><span class="avatar-initials">'+initials+'</span></div><div style="flex:1"><strong>'+name+'</strong><div class="small">🌍 '+escapeHtml(p.country)+' · 📍 '+escapeHtml(p.city)+'</div><div class="small">'+escapeHtml(langs)+' · '+escapeHtml(interests)+'</div></div><button class="btn primary nn-v25-connect" onclick="event.stopPropagation();openPerson('+JSON.stringify(p.name)+')">View</button></div>';
+ }).join('');
+ nnApplyPeopleFilters();
+}
+function nnApplyPeopleFilters(){
+ const q=nnNorm(document.getElementById('peopleSearch')?.value||'');
+ const myCity=nnNorm((nnGetProfile()||{}).city||city), myCountry=nnNorm((nnGetProfile()||{}).country||country);
+ const langs=((nnGetProfile()||{}).languages||state.languages||[]).map(nnNorm);
+ const interests=((nnGetProfile()||{}).interests||state.interests||[]).map(nnNorm);
+ document.querySelectorAll('#peopleList .discover-person').forEach(x=>{
+   const searchOk=!q||x.dataset.name.includes(q)||x.dataset.city.includes(q)||x.dataset.country.includes(q)||x.dataset.language.includes(q)||x.dataset.interest.includes(q);
+   let filterOk=true;
+   if(peopleFilter==='city') filterOk=!!myCity&&x.dataset.city===myCity;
+   else if(peopleFilter==='country') filterOk=!!myCountry&&x.dataset.country===myCountry;
+   else if(peopleFilter==='language') filterOk=langs.some(l=>l&&x.dataset.language.includes(l));
+   else if(peopleFilter==='interest') filterOk=interests.some(i=>i&&x.dataset.interest.includes(i));
+   x.style.display=searchOk&&filterOk?'flex':'none';
+ });
+}
+function filterPeople(){nnApplyPeopleFilters()}
+function setPeopleFilter(f,el){
+ peopleFilter=f;
+ document.querySelectorAll('#s10 .row .pill').forEach(x=>x.classList.remove('selected'));
+ if(el)el.classList.add('selected');
+ nnApplyPeopleFilters();
+}
+function nnSyncCityEverywhere(city){
+ city=String(city||'').trim(); if(!city)return;
+ localStorage.setItem('city',city); localStorage.setItem('nearNativeMapCity',city);
+ const p=nnGetProfile()||{}; p.city=city; nnSaveProfile(p);
+ document.querySelectorAll('[data-current-city]').forEach(el=>el.textContent=city);
+ if(typeof updatePersonalisedUI==='function')updatePersonalisedUI();
+}
+function nnSaveEditedProfileV22(){
+ const p=nnGetProfile()||{};
+ const cityEl=document.querySelector('#editCity');
+ if(cityEl&&cityEl.value) p.city=cityEl.value.trim();
+ nnSaveProfile(p); if(p.city)nnSyncCityEverywhere(p.city);
+}
+</script><script>
+/* V2.5 profile polish helpers */
+(function(){
+ const oldSave=window.saveState;
+ window.saveState=function(){const p=oldSave.apply(this,arguments)||{};const intro=document.getElementById('profileIntro')?.value||p.intro||'';p.intro=intro;localStorage.setItem('nearNativeProfile',JSON.stringify(p));return p};
+ const oldGo25=window.go;
+ window.go=function(n){const r=oldGo25.apply(this,arguments);if(n===8||n===18)setTimeout(()=>{if(typeof nnRefreshProfileUI==='function')nnRefreshProfileUI()},60);return r};
+})();
+</script><div id="photoModal" class="photo-modal" onclick="if(event.target===this)closePhotoPicker()"><div class="photo-sheet"><h3>Add your profile photo</h3><p class="sub" style="margin:0">Choose a photo that helps people recognize you.</p><div class="photo-preview" id="photoPreview"><span id="photoPreviewInitial">R</span></div><input id="photoInput" type="file" accept="image/*" style="display:none" onchange="handleProfilePhoto(this)"><div class="photo-actions"><button class="btn secondary" onclick="document.getElementById('photoInput').click()">📷 Choose photo</button><button class="btn primary" onclick="saveProfilePhoto()">Save photo</button></div><button class="link" style="width:100%;margin-top:8px" onclick="closePhotoPicker()">Cancel</button><div class="tiny">Your photo stays on this device in this prototype.</div></div></div>
+<script>
+/* Near-Native V2.5.4 — Supabase community/city system
+   Dynamic community cards are keyed by the actual community row, never by the old London demo screen. */
+(function(){
+  const esc = v => (typeof escapeHtml==='function' ? escapeHtml(v) : String(v??''));
+  let nnCommunityCache=[];
+  let nnCurrentCommunity=null;
+
+  function nnProfile(){
+    try{return JSON.parse(localStorage.getItem('nearNativeProfile')||'{}')}catch(e){return {}}
+  }
+  function nnCurrentCity(){ return String(nnProfile().city || city || '').trim(); }
+  function nnCurrentCountry(){ return String(nnProfile().country || country || '').trim(); }
+  function nnCommunityFallback(){
+    const c=nnCurrentCity(), co=nnCurrentCountry();
+    if(!c) return null;
+    return {id:null,name:(co==='South Africa'?'South Africans':'People from '+co)+' in '+c,country:co,city:c,description:'A place to meet, share and stay connected.',virtual:true};
+  }
+  function nnCommunityCard(c){
+    const payload=encodeURIComponent(JSON.stringify(c));
+    const icon=c.country==='South Africa'?'🇿🇦':'🌍';
+    return '<div class="community community-item" data-community="'+esc(c.name.toLowerCase())+'" data-community-payload="'+payload+'" onclick="nnOpenCommunityFromCard(this)">'
+      +'<div class="icon">'+icon+'</div><div><strong>'+esc(c.name)+'</strong>'
+      +'<div class="small">'+esc(c.city||'')+(c.country?' · '+esc(c.country):'')+'</div>'
+      +'</div></div>';
+  }
+  window.nnOpenCommunityFromCard=function(el){
+    try{
+      const raw=el?.getAttribute('data-community-payload')||'';
+      if(!raw)throw new Error('Community data is missing.');
+      const c=JSON.parse(decodeURIComponent(raw));
+      nnOpenCommunity(c);
+    }catch(e){
+      console.error('Near-Native community card error:',e);
+      alert('Could not open this community. Please try again.');
+    }
+  };
+  window.nnOpenCommunity=function(c){
+    nnCurrentCommunity=c;
+    const s=document.getElementById('s13'); if(!s)return;
+    const title=s.querySelector('h1'); if(title)title.textContent=c.name||'Community';
+    const sub=s.querySelector('.sub'); if(sub)sub.textContent=c.description||'A place to meet, share and stay connected.';
+    const hero=s.querySelector('.hero-card'); if(hero)hero.innerHTML='<strong>'+(c.city?esc(c.city):'Local community')+'</strong><p class="sub">'+esc(c.country||'')+'</p>';
+    let b=document.getElementById('joinBtn');
+    if(!b){ b=document.createElement('button'); b.id='joinBtn'; b.className='btn primary'; s.appendChild(b); }
+    b.textContent='Join Community'; b.disabled=false; b.style.opacity=''; b.onclick=function(){nnJoinCommunity(c,b)};
+    s.querySelector('.back')?.setAttribute('onclick','go(12)');
+    go(13);
+    nnRestoreJoin(c,b);
+  };
+  async function nnJoinCommunity(c,b){
+    if(!c)return;
+    b=b||document.getElementById('joinBtn');
+    const originalText=b?.textContent||'Join Community';
+    try{
+      if(b){b.disabled=true;b.textContent='Joining…';}
+      let {data:{session}}=await supabaseClient.auth.getSession();
+      let user=session?.user||null;
+
+      // Some local-file Android Chrome sessions keep the app's local profile
+      // while the Supabase auth session has expired. Re-authenticate in place
+      // instead of incorrectly treating the profile as signed in.
+      if(!user){
+        const savedEmail=localStorage.getItem('nearNativeEmail')||'';
+        const email=prompt('Please sign in to join this community.\n\nEmail:',savedEmail);
+        if(!email){if(b){b.disabled=false;b.textContent=originalText;}return;}
+        const password=prompt('Enter your Near-Native password:');
+        if(!password){if(b){b.disabled=false;b.textContent=originalText;}return;}
+        const result=await supabaseClient.auth.signInWithPassword({email:email.trim(),password});
+        if(result.error)throw result.error;
+        user=result.data?.user||null;
+        if(user){
+          localStorage.setItem('nearNativeAuth','true');
+          localStorage.setItem('nearNativeEmail',email.trim());
+        }
+      }
+      if(!user) throw new Error('We could not sign you in. Please try again.');
+
+      // If the city community does not exist yet, create it from the
+      // currently selected country/city so the first join creates a real row.
+      if(!c.id){
+        const name=c.name||'Community';
+        const {data:existing,error:findError}=await supabaseClient
+          .from('communities').select('id,name,country,city,description,created_at')
+          .ilike('name',name).limit(1).maybeSingle();
+        if(findError)throw findError;
+        if(existing){
+          c=existing;
+          nnCurrentCommunity=c;
+        }else{
+          const created=await supabaseClient.from('communities').insert({
+            name,
+            country:c.country||nnCurrentCountry(),
+            city:c.city||nnCurrentCity(),
+            description:c.description||'A place to meet, share and stay connected.'
+          }).select('id,name,country,city,description,created_at').single();
+          if(created.error)throw created.error;
+          c=created.data;
+          nnCurrentCommunity=c;
+        }
+      }
+
+      const {error}=await supabaseClient.from('community_members').insert({community_id:c.id,profile_id:user.id});
+      if(error && !String(error.message||'').toLowerCase().includes('duplicate') && error.code!=='23505') throw error;
+      localStorage.setItem('nearNativeJoined_'+String(c.id),'true');
+      if(b){b.textContent='Joined ✓';b.disabled=true;b.style.opacity='.75';}
+      // If this was a virtual community, it now has a real Supabase id.
+      // Refresh the community list so the new row is immediately visible
+      // and future opens use the database record.
+      nnCommunityCache = nnCommunityCache.filter(x=>x.id!==c.id);
+      nnCommunityCache.push(c);
+      if(typeof window.nnLoadCommunities==='function' && document.getElementById('s12')?.classList.contains('active')){
+        setTimeout(()=>window.nnLoadCommunities(),80);
+      }
+    }catch(e){
+      if(b){b.disabled=false;b.textContent=originalText;}
+      alert(e.message||'Could not join this community.');
+    }
+  }
+  window.nnJoinCommunity=nnJoinCommunity;
+  function nnRestoreJoin(c,b){
+    if(!b)return;
+    const key=c?.id?'nearNativeJoined_'+c.id:'nearNativeJoined_'+String(c?.name||'').toLowerCase().replace(/[^a-z0-9]+/g,'_');
+    if(localStorage.getItem(key)==='true'){b.textContent='Joined ✓';b.disabled=true;b.style.opacity='.75';}
+  }
+  window.nnLoadCommunities=async function(){
+    const host=document.getElementById('communityList');
+    if(!host)return;
+    host.innerHTML='<div class="card"><strong>Loading communities…</strong><p class="sub">Finding communities for your city.</p></div>';
+    try{
+      const {data,error}=await supabaseClient.from('communities').select('id,name,country,city,description,created_at').order('created_at',{ascending:true});
+      if(error)throw error;
+      nnCommunityCache=data||[];
+      const c=nnCurrentCity(), co=nnCurrentCountry();
+      const local=(data||[]).filter(x=>String(x.city||'').toLowerCase()===c.toLowerCase());
+      const fallback=nnCommunityFallback();
+      const items=[...local];
+      if(fallback && !items.some(x=>String(x.name).toLowerCase()===fallback.name.toLowerCase())) items.unshift(fallback);
+      const others=(data||[]).filter(x=>!items.some(y=>y.id===x.id));
+      host.innerHTML=(items.length?items.map(nnCommunityCard).join(''):'')+(others.length?'<div class="section-title" style="margin-top:18px">Other communities</div>'+others.map(nnCommunityCard).join(''):'');
+      if(!items.length&&!others.length) host.innerHTML='<div class="card"><strong>No communities yet</strong><p class="sub">Create a community in Supabase and it will appear here.</p></div>';
+    }catch(e){
+      const fallback=nnCommunityFallback();
+      host.innerHTML=fallback?nnCommunityCard(fallback):'<div class="card"><strong>Communities unavailable</strong><p class="sub">Please check your connection and try again.</p></div>';
+    }
+    const q=(document.getElementById('communitySearch')?.value||'').toLowerCase().trim();
+    if(q) filterCommunities();
+  };
+  window.filterCommunities=function(){
+    const q=(document.getElementById('communitySearch')?.value||'').toLowerCase().trim();
+    document.querySelectorAll('#communityList .community-item').forEach(x=>x.style.display=(!q||x.dataset.community.includes(q))?'flex':'none');
+  };
+  function nnPrepareCommunityScreen(){
+    const s=document.getElementById('s12'); if(!s)return;
+    const old=s.querySelectorAll('.community-item'); old.forEach(x=>x.remove());
+    let host=document.getElementById('communityList');
+    if(!host){
+      host=document.createElement('div'); host.id='communityList';
+      const search=document.getElementById('communitySearch');
+      search?.parentNode.insertBefore(host,search.nextSibling);
+    }
+    const title=s.querySelector('h1'); if(title)title.textContent='Find your communities';
+  }
+  function nnUpdateDiscoverCommunity(){
+    const el=document.getElementById('discoverCommunity'); if(!el)return;
+    const c=nnCommunityFallback();
+    if(c){el.textContent=c.name;const card=el.closest('.community');if(card)card.onclick=function(){nnOpenCommunity(c)}}
+  }
+  const originalGo=window.go;
+  window.go=function(n){
+    const r=originalGo.apply(this,arguments);
+    if(n===10){setTimeout(nnUpdateDiscoverCommunity,40);}
+    if(n===12){setTimeout(function(){nnPrepareCommunityScreen();nnLoadCommunities();},40);}
+    return r;
+  };
+  const originalSetCity=window.setCity;
+  window.setCity=function(name){const r=originalSetCity.apply(this,arguments);setTimeout(nnUpdateDiscoverCommunity,30);return r;};
+  const originalSelectRemoteCity=window.selectRemoteCity;
+  window.selectRemoteCity=function(i){const r=originalSelectRemoteCity.apply(this,arguments);setTimeout(nnUpdateDiscoverCommunity,50);return r;};
+  document.addEventListener('DOMContentLoaded',function(){
+    nnPrepareCommunityScreen();
+    nnUpdateDiscoverCommunity();
+  });
+})();
+</script>
+
+<script>
+/* ===== Near-Native V2.5.5 — Supabase-first people, connections & messaging ===== */
+(function(){
+  const esc=v=>(typeof escapeHtml==='function'?escapeHtml(v):String(v??''));
+  const norm=v=>String(v??'').trim().toLowerCase();
+  let nnPeopleCache=[];
+  let nnSelectedPerson=null;
+  let nnChatConversationId=null;
+
+  // V2.6 account/profile integrity helpers. These are exposed globally because
+  // account creation and sign-in are defined earlier in the HTML.
+  async function nnHydrateProfile(user){
+    const u=user||await nnUser(); if(!u)return null;
+    try{
+      const r=await supabaseClient.from('profiles').select('id,first_name,last_name,country,current_city,bio,profile_photo_url').eq('id',u.id).maybeSingle();
+      if(r.error) throw r.error;
+      if(r.data){
+        const existing=JSON.parse(localStorage.getItem('nearNativeProfile')||'{}');
+        const p={...existing,country:r.data.country||'',city:r.data.current_city||'',name:[r.data.first_name,r.data.last_name].filter(Boolean).join(' ')||u.user_metadata?.first_name||existing.name||'',intro:r.data.bio||''};
+        if(r.data.profile_photo_url)p.photo=r.data.profile_photo_url;
+        localStorage.setItem('nearNativeProfile',JSON.stringify(p));
+        Object.assign(state,p); country=p.country; city=p.city;
+        return p;
+      }
+    }catch(e){console.warn('Near-Native profile hydrate failed',e)}
+    return null;
+  }
+
+  async function nnEnsureProfileForCurrentUser(user,overrides={}){
+    const u=user||await nnUser(); if(!u)return null;
+    const p=nnProfile(); const displayName=String(overrides.first_name||p.name||u.user_metadata?.first_name||'').trim();
+    const n=nnNameParts(displayName);
+    const row={id:u.id,first_name:n.first_name,last_name:n.last_name,country:p.country||'',current_city:p.city||'',bio:p.intro||''};
+    if(p.photo && String(p.photo).startsWith('http'))row.profile_photo_url=p.photo;
+    const r=await supabaseClient.from('profiles').upsert(row,{onConflict:'id'}).select().single();
+    if(r.error) throw r.error;
+    return r.data;
+  }
+
+  window.nnHydrateProfile=nnHydrateProfile;
+  window.nnEnsureProfileForCurrentUser=nnEnsureProfileForCurrentUser;
+
+  function nnProfile(){try{return JSON.parse(localStorage.getItem('nearNativeProfile')||'{}')}catch(e){return {}}}
+  async function nnUser(){try{const r=await supabaseClient.auth.getSession();return r?.data?.session?.user||null}catch(e){return null}}
+  function nnNameParts(name){
+    const parts=String(name||'').trim().split(/\s+/).filter(Boolean);
+    return {first_name:parts.shift()||'',last_name:parts.join(' ')||''};
+  }
+  async function nnSyncProfile(){
+    return nnEnsureProfileForCurrentUser();
+  }
+  async function nnLoadPeople(){
+    const host=document.getElementById('peopleList'); if(!host)return;
+    host.innerHTML='<div class="card"><strong>Finding your people…</strong><p class="sub">Loading profiles from Near-Native.</p></div>';
+    try{
+      const me=await nnUser(); if(!me) throw new Error('Please sign in to discover people.');
+      const r=await supabaseClient.from('profiles').select('id,first_name,last_name,country,current_city,bio,profile_photo_url,what_you_want,created_at').neq('id',me.id).order('created_at',{ascending:true});
+      if(r.error)throw r.error;
+      const rows=r.data||[];
+      nnPeopleCache=rows.map(x=>({
+        id:x.id,name:[x.first_name,x.last_name].filter(Boolean).join(' ')||'Near-Native member',
+        country:x.country||'',city:x.current_city||'',intro:x.bio||'',photo:x.profile_photo_url||'',what:x.what_you_want||''
+      }));
+      await nnLoadAttributes(nnPeopleCache);
+      nnRenderPeople();
+    }catch(e){
+      nnPeopleCache=[];
+      host.innerHTML='<div class="card"><strong>We could not load people yet.</strong><p class="sub" style="margin:6px 0 0">'+esc(e.message||'Please check your connection and try again.')+'</p></div>';
+    }
+  }
+  async function nnLoadAttributes(people){
+    if(!people.length)return;
+    try{
+      const ids=people.map(p=>p.id);
+      const lr=await supabaseClient.from('profile_languages').select('profile_id,language_id,languages(name)').in('profile_id',ids);
+      if(!lr.error)(lr.data||[]).forEach(x=>{const p=people.find(y=>y.id===x.profile_id);const n=x.languages?.name;if(p&&n)(p.languages||(p.languages=[])).push(n)});
+    }catch(e){}
+    try{
+      const ids=people.map(p=>p.id);
+      const ir=await supabaseClient.from('profile_interests').select('profile_id,interest_id,interests(name)').in('profile_id',ids);
+      if(!ir.error)(ir.data||[]).forEach(x=>{const p=people.find(y=>y.id===x.profile_id);const n=x.interests?.name;if(p&&n)(p.interests||(p.interests=[])).push(n)});
+    }catch(e){}
+  }
+  function nnRenderPeople(){
+    const host=document.getElementById('peopleList'); if(!host)return;
+    if(!nnPeopleCache.length){
+      host.innerHTML='<div class="card nn-empty"><div style="font-size:28px">🌍</div><strong>Your people will appear here</strong><p class="sub" style="margin:6px 0 0">No other Near-Native profiles are registered yet. As people join, they will appear here automatically.</p></div>';
+      return;
+    }
+    host.innerHTML=nnPeopleCache.map(p=>{
+      const langs=(p.languages||[]).join(' · '), ints=(p.interests||[]).join(' · ');
+      const initials=esc((p.name||'NN').split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase());
+      const photo=p.photo&&String(p.photo).startsWith('http')?'<img src="'+esc(p.photo)+'" alt="">':'<span class="avatar-initials">'+initials+'</span>';
+      return '<div class="person discover-person" data-id="'+esc(p.id)+'" data-name="'+esc(norm(p.name))+'" data-city="'+esc(norm(p.city))+'" data-country="'+esc(norm(p.country))+'" data-language="'+esc(norm(langs))+'" data-interest="'+esc(norm(ints))+'" onclick="nnOpenPersonById('+JSON.stringify(p.id)+')"><div class="avatar">'+photo+'</div><div style="flex:1"><strong style="cursor:pointer" onclick="event.stopPropagation();nnOpenPersonById('+JSON.stringify(p.id)+')">'+esc(p.name)+'</strong><div class="small">🌍 '+esc(p.country||'')+' · 📍 '+esc(p.city||'')+'</div><div class="small">'+esc(langs||'Languages not added yet')+(ints?' · '+esc(ints):'')+'</div></div><button class="btn primary nn-v25-connect" onclick="event.stopPropagation();nnOpenPersonById('+JSON.stringify(p.id)+')">View</button></div>';
+    }).join('');
+    nnApplyPeopleFilters();
+  }
+  function nnApplyPeopleFilters(){
+    const q=norm(document.getElementById('peopleSearch')?.value||'');
+    const me=nnProfile(); const myCity=norm(me.city||city), myCountry=norm(me.country||country);
+    const langs=(me.languages||[]).map(norm), ints=(me.interests||[]).map(norm);
+    document.querySelectorAll('#peopleList .discover-person').forEach(x=>{
+      const search=!q||x.dataset.name.includes(q)||x.dataset.city.includes(q)||x.dataset.country.includes(q)||x.dataset.language.includes(q)||x.dataset.interest.includes(q);
+      let f=true;
+      if(peopleFilter==='city')f=!!myCity&&x.dataset.city===myCity;
+      else if(peopleFilter==='country')f=!!myCountry&&x.dataset.country===myCountry;
+      else if(peopleFilter==='language')f=langs.some(v=>v&&x.dataset.language.includes(v));
+      else if(peopleFilter==='interest')f=ints.some(v=>v&&x.dataset.interest.includes(v));
+      x.style.display=search&&f?'flex':'none';
+    });
+  }
+  window.filterPeople=nnApplyPeopleFilters;
+  window.setPeopleFilter=function(f,el){
+    peopleFilter=f; document.querySelectorAll('#s10 .row .pill').forEach(x=>x.classList.remove('selected')); if(el)el.classList.add('selected'); nnApplyPeopleFilters();
+  };
+
+  window.nnOpenPersonById=async function(id){
+    /* V2.6.1: robust People-card navigation. Resolve from cache first, then Supabase. */
+    const wanted=String(id||'').trim();
+    let p=nnPeopleCache.find(x=>String(x.id||'').trim()===wanted);
+    if(!p){
+      try{
+        const r=await supabaseClient.from('profiles').select('id,first_name,last_name,country,current_city,bio,profile_photo_url,what_you_want').eq('id',wanted).single();
+        if(r.error)throw r.error;
+        const x=r.data;
+        p={id:x.id,name:[x.first_name,x.last_name].filter(Boolean).join(' ')||'Near-Native member',country:x.country||'',city:x.current_city||'',intro:x.bio||'',photo:x.profile_photo_url||'',what:x.what_you_want||''};
+        nnPeopleCache.push(p);
+      }catch(e){
+        alert(e.message||'Could not open this profile. Please try again.');
+        return;
+      }
+    }
+    nnSelectedPerson=p; localStorage.setItem('nearNativePersonId',String(p.id)); localStorage.setItem('nearNativePerson',p.name);
+    const av=document.getElementById('otherProfileAvatar');
+    if(av)av.innerHTML=p.photo&&String(p.photo).startsWith('http')?'<img src="'+esc(p.photo)+'" alt="">':'<span class="avatar-initials">'+esc((p.name||'NN').split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase())+'</span>';
+    const nm=document.getElementById('otherProfileName'); if(nm)nm.textContent=p.name;
+    const loc=document.getElementById('otherProfileLocation'); if(loc)loc.textContent=(p.country?'🌍 '+p.country:'')+(p.city?' · 📍 '+p.city:'');
+    const stats=document.querySelector('#s11 .nn-v25-profile-grid'); if(stats)stats.innerHTML='<div class="nn-v25-stat"><b>🗣️ Languages</b><span>'+esc((p.languages||[]).join(' · ')||'Not added yet')+'</span></div><div class="nn-v25-stat"><b>❤️ Interests</b><span>'+esc((p.interests||[]).join(' · ')||'Not added yet')+'</span></div>';
+    const about=document.querySelector('#s11 .card'); if(about)about.innerHTML='<strong>About</strong><p class="sub">'+esc(p.intro||'This member has not added an introduction yet.')+'</p><div class="tag-row">'+(p.country?'<span class="tag">🌍 '+esc(p.country)+'</span>':'')+(p.city?'<span class="tag">📍 '+esc(p.city)+'</span>':'')+(p.what?'<span class="tag">✨ '+esc(p.what)+'</span>':'')+'</div>';
+    const btn=document.getElementById('personConnectBtn'); if(btn){btn.textContent='Connect';btn.disabled=false;btn.style.opacity='';}
+    go(11);
+    nnLoadConnectionState();
+  };
+  async function nnLoadConnectionState(){
+    const btn=document.getElementById('personConnectBtn'); if(!btn||!nnSelectedPerson)return;
+    try{
+      const me=await nnUser(); if(!me)return;
+      const r=await supabaseClient.from('connections').select('id,status,requester_id,recipient_id').or('and(requester_id.eq.'+me.id+',recipient_id.eq.'+nnSelectedPerson.id+'),and(requester_id.eq.'+nnSelectedPerson.id+',recipient_id.eq.'+me.id+')').order('created_at',{ascending:false}).limit(1).maybeSingle();
+      if(r.data){
+        btn.textContent=r.data.status==='accepted'?'Connected ✓':(r.data.requester_id===me.id?'Request Sent':'Respond in Connections');
+        btn.disabled=true; btn.style.opacity='.75';
+      }
+    }catch(e){}
+  }
+  window.nnConnectSelected=async function(){
+    const b=document.getElementById('personConnectBtn'); if(!nnSelectedPerson)return;
+    try{
+      const me=await nnUser(); if(!me)throw new Error('Please sign in first.');
+      b.disabled=true;b.textContent='Connecting…';
+      const existing=await supabaseClient.from('connections').select('id,status').or('and(requester_id.eq.'+me.id+',recipient_id.eq.'+nnSelectedPerson.id+'),and(requester_id.eq.'+nnSelectedPerson.id+',recipient_id.eq.'+me.id+')').limit(1).maybeSingle();
+      if(existing.error)throw existing.error;
+      if(existing.data){b.textContent=existing.data.status==='accepted'?'Connected ✓':'Request Sent';b.style.opacity='.75';return}
+      const r=await supabaseClient.from('connections').insert({requester_id:me.id,recipient_id:nnSelectedPerson.id,status:'pending'}).select().single();
+      if(r.error)throw r.error;
+      b.textContent='Request Sent ✓';b.style.opacity='.75';
+    }catch(e){b.disabled=false;b.textContent='Connect';alert(e.message||'Could not send connection request.')}
+  };
+
+  async function nnFindConversation(meId,otherId){
+    const a=await supabaseClient.from('conversation_members').select('conversation_id').eq('profile_id',meId);
+    if(a.error)throw a.error;
+    const mine=(a.data||[]).map(x=>x.conversation_id);
+    if(!mine.length)return null;
+    const b=await supabaseClient.from('conversation_members').select('conversation_id').eq('profile_id',otherId).in('conversation_id',mine);
+    if(b.error)throw b.error;
+    return b.data?.[0]?.conversation_id||null;
+  }
+  async function nnEnsureConversation(meId,otherId){
+    const found=await nnFindConversation(meId,otherId); if(found)return found;
+    const c=await supabaseClient.from('conversations').insert({}).select('id').single();
+    if(c.error)throw c.error;
+    const m=await supabaseClient.from('conversation_members').insert([{conversation_id:c.data.id,profile_id:meId},{conversation_id:c.data.id,profile_id:otherId}]);
+    if(m.error)throw m.error;
+    return c.data.id;
+  }
+  async function nnOpenRealChat(){
+    if(!nnSelectedPerson){alert('Please choose a person first.');return}
+    const me=await nnUser(); if(!me){alert('Please sign in first.');return}
+    localStorage.setItem('nearNativeChatPerson',nnSelectedPerson.name);
+    const h=document.getElementById('chatPersonName');if(h)h.textContent=nnSelectedPerson.name;
+    nnChatConversationId=await nnEnsureConversation(me.id,nnSelectedPerson.id);
+    go(16); await nnLoadChatMessages();
+  }
+  async function nnLoadChatMessages(){
+    const box=document.getElementById('chatMessages'); if(!box||!nnChatConversationId)return;
+    box.innerHTML='<p class="sub">Loading conversation…</p>';
+    try{
+      const r=await supabaseClient.from('messages').select('id,sender_id,content,created_at').eq('conversation_id',nnChatConversationId).order('created_at',{ascending:true});
+      if(r.error)throw r.error;
+      const me=await nnUser();
+      if(!r.data?.length){box.innerHTML='<p class="sub" style="margin-top:14px">No messages yet. Start the conversation.</p>';return}
+      box.innerHTML=r.data.map(m=>'<div class="card" style="margin-top:8px"><strong>'+esc(m.sender_id===me?.id?'You':(nnSelectedPerson?.name||'Member'))+'</strong><p class="sub" style="margin:5px 0 0">'+esc(m.content||'')+'</p></div>').join('');
+    }catch(e){box.innerHTML='<p class="sub">Messages could not be loaded right now.</p>';}
+  }
+  window.sendMessage=async function(){
+    const input=document.getElementById('messageInput'), msg=input?.value.trim(); if(!msg)return;
+    try{
+      const me=await nnUser(); if(!me)throw new Error('Please sign in first.');
+      if(!nnSelectedPerson){
+        const id=localStorage.getItem('nearNativePersonId'); nnSelectedPerson=nnPeopleCache.find(x=>x.id===id)||null;
+      }
+      if(!nnSelectedPerson)throw new Error('Choose a person from Discover first.');
+      if(!nnChatConversationId)nnChatConversationId=await nnEnsureConversation(me.id,nnSelectedPerson.id);
+      const r=await supabaseClient.from('messages').insert({conversation_id:nnChatConversationId,sender_id:me.id,content:msg}).select().single();
+      if(r.error)throw r.error;
+      input.value=''; await nnLoadChatMessages();
+    }catch(e){alert(e.message||'Could not send message.')}
+  };
+
+  async function nnLoadMessages(){
+    const host=document.getElementById('messagesList')||document.querySelector('#s15 .message-list');
+    if(!host)return;
+    try{
+      const me=await nnUser(); if(!me)throw new Error('Please sign in.');
+      const cm=await supabaseClient.from('conversation_members').select('conversation_id').eq('profile_id',me.id);
+      if(cm.error)throw cm.error;
+      const ids=(cm.data||[]).map(x=>x.conversation_id);
+      if(!ids.length){host.innerHTML='<div class="card"><strong>No conversations yet</strong><p class="sub">When you connect with someone and start chatting, your conversations will appear here.</p></div>';return}
+      const members=await supabaseClient.from('conversation_members').select('conversation_id,profile_id').in('conversation_id',ids);
+      if(members.error)throw members.error;
+      const otherIds=[...new Set((members.data||[]).filter(x=>x.profile_id!==me.id).map(x=>x.profile_id))];
+      if(!otherIds.length){host.innerHTML='<div class="card"><strong>No conversations yet</strong></div>';return}
+      const profiles=await supabaseClient.from('profiles').select('id,first_name,last_name,current_city,country').in('id',otherIds);
+      if(profiles.error)throw profiles.error;
+      const last=await supabaseClient.from('messages').select('conversation_id,content,created_at').in('conversation_id',ids).order('created_at',{ascending:false});
+      const lastMap={}; if(!last.error)(last.data||[]).forEach(m=>{if(!lastMap[m.conversation_id])lastMap[m.conversation_id]=m});
+      host.innerHTML=profiles.data.map(p=>{
+        const cid=(members.data||[]).find(x=>x.profile_id===p.id)?.conversation_id; const name=[p.first_name,p.last_name].filter(Boolean).join(' ')||'Near-Native member'; const preview=lastMap[cid]?.content||'Start a conversation';
+        return '<div class="card" style="cursor:pointer" onclick="nnOpenChatFromMessage('+JSON.stringify(p.id)+')"><strong>'+esc(name)+'</strong><p class="sub" style="margin:6px 0 0">'+esc(preview)+'</p><div class="small">'+esc(p.country||'')+(p.current_city?' · '+esc(p.current_city):'')+'</div></div>';
+      }).join('');
+    }catch(e){host.innerHTML='<div class="card"><strong>Messages unavailable</strong><p class="sub">'+esc(e.message||'Please try again.')+'</p></div>'}
+  }
+  window.nnOpenChatFromMessage=async function(id){
+    if(!nnPeopleCache.length){await nnLoadPeople()}
+    let p=nnPeopleCache.find(x=>x.id===id);
+    if(!p){
+      const r=await supabaseClient.from('profiles').select('id,first_name,last_name,country,current_city,bio,profile_photo_url,what_you_want').eq('id',id).single();
+      if(r.error)throw r.error;p={id:r.data.id,name:[r.data.first_name,r.data.last_name].filter(Boolean).join(' ')||'Near-Native member',country:r.data.country||'',city:r.data.current_city||'',intro:r.data.bio||'',photo:r.data.profile_photo_url||'',what:r.data.what_you_want||''};nnPeopleCache.push(p);
+    }
+    nnSelectedPerson=p; await nnOpenRealChat();
+  };
+
+  function nnCommunityDiscoverLink(){
+    const el=document.getElementById('discoverCommunity'); if(!el)return;
+    const p=nnProfile(), c=p.city||city, co=p.country||country;
+    el.textContent=(co==='South Africa'?'South Africans':'People from '+co)+' in '+c;
+  }
+
+  /* Replace demo People/Profile/Messages UI with data-driven UI while preserving the V2.5.4 visual design. */
+  function nnPrepareScreens(){
+    const s11=document.getElementById('s11');
+    if(s11){
+      const actions=s11.querySelector('.profile-actions');
+      if(actions)actions.innerHTML='<button id="personConnectBtn" class="btn primary" style="margin:0" onclick="nnConnectSelected()">🤝 Connect</button><button class="btn secondary" style="margin:0" onclick="nnOpenRealChat()">💬 Message</button>';
+      const banner=s11.querySelector('.connection-banner'); if(banner)banner.textContent='🤝 Connect with people who share your city, country, languages or interests.';
+    }
+    const s15=document.getElementById('s15');
+    if(s15){
+      s15.querySelectorAll('.card').forEach(x=>x.remove());
+      const host=document.createElement('div');host.id='messagesList';host.className='message-list';s15.querySelector('.nav')?.before(host);
+      const status=document.getElementById('messageSyncStatus');if(status)status.textContent='Messages are stored in your Near-Native Supabase account.';
+    }
+    const s16=document.getElementById('s16');
+    if(s16){const old=s16.querySelector('#sentMessage');if(old)old.remove();const card=s16.querySelector('.card');if(card)card.innerHTML='<strong>Conversation</strong><p class="sub">Messages are synced through your Near-Native account.</p>'}
+  }
+
+  const oldGo=window.go;
+  window.go=function(n){
+    const r=oldGo.apply(this,arguments);
+    if(n===10)setTimeout(()=>{nnCommunityDiscoverLink();nnLoadPeople()},80);
+    if(n===15)setTimeout(()=>nnLoadMessages(),100);
+    if(n===16)setTimeout(()=>nnLoadChatMessages(),100);
+    return r;
+  };
+  const oldSave=window.saveState;
+  window.saveState=function(){const r=oldSave.apply(this,arguments);setTimeout(()=>nnSyncProfile().catch(()=>{}),80);return r};
+  const oldSetCity=window.setCity;
+  window.setCity=function(name){const r=oldSetCity.apply(this,arguments);setTimeout(()=>nnSyncProfile().catch(()=>{}),100);return r};
+  const oldSelectRemoteCity=window.selectRemoteCity;
+  window.selectRemoteCity=function(i){const r=oldSelectRemoteCity.apply(this,arguments);setTimeout(()=>nnSyncProfile().catch(()=>{}),100);return r};
+
+  document.addEventListener('DOMContentLoaded',async function(){
+    nnPrepareScreens();nnCommunityDiscoverLink();
+    try{
+      const u=await nnUser();
+      if(u){await nnHydrateProfile(u);await nnEnsureProfileForCurrentUser(u);restoreState();updatePersonalisedUI();}
+    }catch(e){console.warn('Near-Native V2.6 startup profile sync failed',e)}
+  });
+})();
+
+/* V2.5.6 location fix */
+async function useMyLocation(){
+  const status=document.getElementById('locationStatus')||document.getElementById('onboardingCityStatus');
+  const btn=document.getElementById('useLocationBtn')||[...document.querySelectorAll('#s4 .btn')].find(x=>/Use My Location/i.test(x.textContent||''));
+  const finish=(msg,ok=false)=>{
+    if(status){status.textContent=msg;status.style.color=ok?'#17A398':'';}
+    if(btn){btn.disabled=false;btn.textContent='📍 Use My Location';}
+  };
+  if(status)status.textContent='📍 Finding your city…';
+  if(btn){btn.disabled=true;btn.textContent='Finding your city…';}
+
+  const apply=(c,co)=>{
+    c=String(c||'').trim(); co=String(co||'').trim();
+    if(!c)throw new Error('No city found');
+    city=c;
+    if(co)country=co;
+    saveState();
+    updatePersonalisedUI();
+    finish('📍 Location found: '+city+(co?' · '+co:''),true);
+    setTimeout(()=>go(5),500);
+  };
+
+  // 1) Try browser GPS. This works reliably when the app is served over HTTPS
+  // (for example through GitHub Pages) and the user grants Chrome permission.
+  if(navigator.geolocation){
+    try{
+      if(status)status.textContent='📍 Requesting Chrome location permission…';
+      const pos=await new Promise((resolve,reject)=>navigator.geolocation.getCurrentPosition(resolve,reject,{
+        enableHighAccuracy:false,timeout:10000,maximumAge:300000
+      }));
+      const lat=pos.coords.latitude,lon=pos.coords.longitude;
+      const r=await fetch('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat='+encodeURIComponent(lat)+'&lon='+encodeURIComponent(lon)+'&zoom=10&addressdetails=1',{cache:'no-store'});
+      if(!r.ok)throw new Error('Reverse geocoding failed');
+      const d=await r.json();
+      const a=d.address||{};
+      const detected=String(a.city||a.town||a.municipality||a.village||a.suburb||'').trim();
+      const co=String(a.country||'').trim();
+      if(!detected)throw new Error('No city found');
+      apply(detected,co); return;
+    }catch(e){
+      // Continue to the approximate IP fallback.
+    }
+  }
+
+  // 2) IP fallback. This also works when the HTML is opened locally.
+  try{
+    if(status)status.textContent='📍 Finding your approximate city…';
+    const r=await fetch('https://ipapi.co/json/?t='+Date.now(),{cache:'no-store'});
+    if(!r.ok)throw new Error('IP location failed');
+    const d=await r.json();
+    const detected=String(d.city||d.region||'').trim();
+    if(!detected)throw new Error('No city found');
+    apply(detected,String(d.country_name||'').trim());
+  }catch(e){
+    finish('Location could not be detected. Please allow Chrome location access or choose your city manually.');
+  }
+}
+</script>
+
+</body></html>
